@@ -7,3 +7,4 @@ renders/masters/
 .DS_Store
 renders/audio/*.wav
 renders/part*_animatic*.mp4
+renders/film_*.mp4

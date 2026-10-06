@@ -32,7 +32,7 @@ bible/                     ← characters.yaml, locations.yaml, style.md (STYLE 
 assets/refs/               ← canonical model sheets (char_*.png) + key_art.png (mood only, NOT canon for proportions)
 production/
   shots_part1.yaml         ← 79 shots, fully specified (600 s)
-  shots_part2.yaml         ← scene skeleton with locked durations — shots to be written
+  shots_part2.yaml         ← 98 shots, fully specified (720 s, film time 10:00–22:00)
   scenes.md                ← scene table: timecodes, production method mix, difficulty
   status.md                ← progress tracker (update every session)
   gen_log.jsonl            ← append-only log of every generation (auto-written by tools)
@@ -45,10 +45,13 @@ tools/
   make_voice.py            ← TTS for every vo/dlg line -> renders/audio/lines/<SHOT>.mp3 + part1_lines.json (SAY dict = tashkeel overrides)
   make_score.py            ← original synthesized score + SFX (seeded numpy; CUES spotting sheet per scene)
   mix_part.py              ← places lines (auto-pushes overlaps), ducks music/SFX, loudnorm -> renders/audio/part1_mix.wav
-  make_hf.py               ← HF graphics shots (S01-07 stars->glyphs, S02-07 title, S09-04 end card) via PIL+ffmpeg
+  make_hf.py               ← HF graphics shots via PIL+ffmpeg: S01-07 stars->glyphs, S02-07 title, S09-04 end card,
+                             S14-06 first letters carved, S15-03 reading the signs, S18-04 end credit (plates: renders/keyframes/<SHOT>_plate.jpg)
+                             NOTE: the Naskh font has no em dash (—) → use «،» in on-screen Arabic text
   assemble.py              ← ffmpeg cut: clip > keyframe still w/ zoompan from `camera` > slate. --subs burns RTL Arabic subs + writes .srt, --preview = 720p
   contact_sheet.py         ← renders/sheets/<SCENE>.jpg (id, timecode, dur, method per shot)
   shot_index.py            ← production/shot_index.md: every shot with its position in the film, thumbnail, line, links, status
+  master.py                ← joins part1 + part2 into the 22:00 film + merged film.srt (--preview = 720p animatic parts)
 renders/
   keyframes/<SHOT>.jpg     ← approved keyframes (JPG q2; S02-07_plate.jpg = title background)
   thumbs/<SHOT>.jpg        ← 320×180 thumbs for shot_index.md (auto)
@@ -148,11 +151,20 @@ Timecodes are **derived** from cumulative `dur`, so never write them by hand. `p
 - `production/shot_index.md` and contact sheets for S01–S09.
 - **Waiting on owner:** budget approval for the 72 remaining video clips, ≈$120 (kling) to ≈$370 (seedance). Native-speaker check of the Tifinagh title `ⴰⵎⵎⵍⵏ`.
 
+**Part 2 (2026-10-06):**
+- Part 2 shot list written: 98 shots, 720 s, validated (KF2V×78, T2V×17, HF×3). New location `HAMADA` (stony plateau, S10/S11).
+- All 95 Part 2 keyframes generated + QC'd (`kf_done`). HF shots S14-06, S15-03, S18-04 rendered (`clip_done`).
+- Part 2 audio: 31 MSA lines, score, SFX, mix `part2_mix.wav` (−17.7 LUFS).
+- Part 2 animatic + the full **22:00 film animatic** (`master.py`) published as GitHub Release `part2-animatic-v1`.
+- Screenplay lines marked ⁺ in Part 2 were added during shot-listing; the owner may delete them (re-run make_voice/mix_part after).
+- **Waiting on owner:** budget for video clips. Remaining: 72 (Part 1) + 95 (Part 2) = 167 clips ≈ $255 (kling) to ≈ $780 (seedance). Tifinagh check of `ⴰⵎⵎⵍⵏ` (used in S02-07, S18-04).
+
 **Next, in order:**
-1. ~~Animatic~~ ✔. ~~All Part 1 keyframes~~ ✔. ~~Part 1 audio~~ ✔.
-2. Once the owner approves: **Part 1 clips** scene by scene (`viktor_produce.py clip`), QC, commit per scene. Re-run `assemble.py`, then `shot_index.py`. Re-time voice lines with `mix_part.py` if clip lengths change. Then the Part 1 release.
-4. Write `production/shots_part2.yaml` shots following §4 exactly, using `target_dur`/`target_shots` per scene. Run `validate_shots.py` until it passes.
-5. Produce Part 2 the same way, then deliver the 22-minute master.
+1. ~~Animatic~~ ✔. ~~All keyframes (both parts)~~ ✔. ~~Audio (both parts)~~ ✔. ~~22:00 animatic~~ ✔.
+2. Once the owner approves the budget: **clips** scene by scene (`viktor_produce.py clip`; kling for medium/close, seedance for wides), QC, commit per scene. Re-run `assemble.py --part N`, `master.py`, `shot_index.py`. Re-time lines with `mix_part.py` if clip lengths change. New release per part.
+3. Deliver `film_master.mp4` (1080p) as the final release.
+
+**Gotcha:** never run two `viktor_produce.py kf` processes on overlapping IDs; parallel image calls can return the same file. After any batch, md5-check `renders/keyframes/*.jpg` for duplicates.
 
 ## 8. Session protocol (every agent, every session)
 1. `git pull`. Read this file and `production/status.md`.
@@ -183,3 +195,8 @@ Timecodes are **derived** from cumulative `dur`, so never write them by hand. `p
   - Added "comic panels, split screen, collage, multiple frames, storyboard grid" to NEGATIVE (common.py + style.md).
   - New tools: make_voice, make_score, mix_part, make_hf, contact_sheet, shot_index. Rewrote assemble.py (stills + zoompan, RTL subtitles).
   - Owner decisions: MSA; music generated or from free libraries.
+- 2026-10-06 — Part 2 by Viktor:
+  - Wrote `shots_part2.yaml` (98 shots, 720 s) and generated 95 keyframes; 6 redone after QC (S10-03, S10-14, S11-07, S13-09, S15-01, S16-02; two were text2im duplicates).
+  - Rewrote `action` for 4 shots after QC. No dialogue changes beyond the ⁺ lines noted in §7.
+  - HF shots S14-06, S15-03, S18-04 (make_hf.py). Credit text uses «،» (font lacks em dash).
+  - 31 voice lines, score, mix. Part 2 animatic + full 22:00 animatic via new `master.py`. Release `part2-animatic-v1`.

@@ -18,7 +18,7 @@
 - `assets/refs/`: لوحات تصميم الشخصيات المعتمدة.
 - `production/`:
   - قائمة لقطات الجزء الأول: 79 لقطة، 600 ثانية.
-  - هيكل الجزء الثاني.
+  - قائمة لقطات الجزء الثاني: 98 لقطة، 720 ثانية.
   - جدول المشاهد وطرق إنتاجها.
   - متتبّع التقدّم `status.md`.
 - `tools/`: أدوات التحقق وبناء الأوامر (prompts) والتوليد والمونتاج.
@@ -26,7 +26,7 @@
 
 ## أين أرى الفيلم؟
 - **[فهرس اللقطات `production/shot_index.md`](production/shot_index.md)**: كل لقطة بصورتها وموضعها الدقيق في الفيلم (من–إلى) وحالتها.
-- **الأنيماتك (المسودة المتحركة) للجزء الأول**: في [Releases](https://github.com/ayoub5550/story/releases).
+- **الأنيماتك (المسودة المتحركة)**: [الجزء الأول](https://github.com/ayoub5550/story/releases/tag/part1-animatic-v1) · [الجزء الثاني + الفيلم كاملًا 22:00](https://github.com/ayoub5550/story/releases/tag/part2-animatic-v1).
 
 ## للوكلاء (AI agents) والمساهمين
 اقرأ **[AGENTS.md](AGENTS.md)** كاملًا قبل أي عمل. فيه تسلسل المرجعية، وصيغة اللقطة، والقواعد الإبداعية، وخط الإنتاج، والمهمة التالية بالضبط.
@@ -36,4 +36,6 @@ pip install pyyaml
 python tools/validate_shots.py          # التحقق من قوائم اللقطات والتوقيتات
 python tools/build_prompt.py S05-01     # أوامر لقطة واحدة
 python tools/assemble.py --part 1 --audio renders/audio/part1_mix.wav --subs   # مونتاج الجزء الأول مع الصوت والترجمة
+python tools/assemble.py --part 2 --audio renders/audio/part2_mix.wav --subs   # الجزء الثاني
+python tools/master.py                  # دمج الجزأين في فيلم 22:00 + film.srt
 ```
