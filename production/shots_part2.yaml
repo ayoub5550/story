@@ -1,0 +1,18 @@
+# SHOT LIST — PART 2 «الحجر الصلب» (10:00–22:00 = 720 s)
+# STATUS: SKELETON. Scene durations are locked; shots must be broken down by the next agent
+# following the exact format of shots_part1.yaml (see AGENTS.md §4 + §7 "Next tasks").
+# The `shots` list of each scene must sum EXACTLY to `target_dur`.
+
+part: 2
+fps: 24
+resolution: 1920x1080
+scenes:
+- {scene: S10, title: "الغارة", tod: night, loc: CAMP, target_dur: 80, target_shots: 14, notes: "fast cutting 3–6 s shots; Kel Ehad in black; Tafukt fights with tent pole; RAIDCHIEF line", shots: []}
+- {scene: S11, title: "لا أثر", tod: day->night, loc: [CAMP], target_dur: 70, target_shots: 9, notes: "mirror S08-05: palm on hard rock, nothing; sandstorm; Tanfust imzad + riddle line", shots: []}
+- {scene: S12, title: "آخر العمالقة", tod: journey->dawn, loc: [TASSILI, GIANTCAVE], target_dur: 120, target_shots: 15, notes: "needs AGEZMI ref first; giant dialogue = Utnapishtim beat; giant petrifies at sunrise", shots: []}
+- {scene: S13, title: "مبارزة الألغاز والهروب", tod: night, loc: [RAIDERCAMP, TASSILI], target_dur: 90, target_shots: 13, notes: "needs RAIDCHIEF ref; 3 quick riddles; Tafukt cuts bonds with silver cross edge", shots: []}
+- {scene: S14, title: "اختراع الحروف", tod: montage, loc: [TASSILI, SIGNROCKS], target_dur: 90, target_shots: 13, notes: "echo S04-03 symbols EXACTLY; HF glowing tifinagh overlays; Amamellen ages visibly", shots: []}
+- {scene: S15, title: "قراءة العلامات", tod: day, loc: [TASSILI, SIGNROCKS], target_dur: 90, target_shots: 12, notes: "Tafukt reads first sign; false sign misleads raiders; HF glyph overlays", shots: []}
+- {scene: S16, title: "الصخرة الأخيرة", tod: sunset, loc: SIGNROCKS, target_dur: 90, target_shots: 11, notes: "last riddle; takouba handed to sister's son; side-by-side staging", shots: []}
+- {scene: S17, title: "تصلّبت الحجارة كي تبقى الكلمات", tod: golden, loc: CAMP, target_dur: 60, target_shots: 7, notes: "crane up; centuries pass time-lapse on the inscribed rock", shots: []}
+- {scene: S18, title: "الخاتمة", tod: night, loc: FIRECAMP, target_dur: 30, target_shots: 4, notes: "mirror S01 framing; Ilyas reads; stars -> tifinagh; HF title + credits", shots: []}

@@ -1,0 +1,88 @@
+# CHARACTER BIBLE — canonical. Never change a design without updating refs + this file + AGENTS.md changelog.
+# `token` is used inside shot prompts as [TOKEN]; tools/build_prompt.py expands it to `prompt`.
+# `ref` = model sheet image to pass as reference image to image/video models.
+# `voice` = ElevenLabs voice (eleven_v4, language_code="ar"). Keep fixed for the whole film.
+
+characters:
+  - token: AMAMELLEN
+    name_ar: أمامّلن
+    meaning: "صاحب الوضوح (ama-mellen)"
+    age: "early 50s (Part 1) — visibly older, greyer, thinner by end of Part 2"
+    ar: "حكيم الطوارق وسيد الألغاز. فخور، دافئ في العمق، يخاف أن يُنسى. عيناه كهرمانيتان، لا يُرى وجهه أبدًا خلف اللثام."
+    prompt: "Amamellen, a tall lean Tuareg sage-chief in his early fifties, deep indigo tagelmust veil and turban fully covering mouth and nose, only piercing amber eyes and strong brows visible, grey at temples, indigo-black flowing robe over white tunic, wide leather belt, silver amulet on chest, takouba sword in red leather scabbard"
+    ref: assets/refs/char_amamellen.png
+    voice: george      # deep, measured
+    rules: "ALWAYS veiled (mouth never visible -> no lip-sync needed). Signature colour: deep indigo. Screen direction: enters/looks screen-LEFT in Part 1 conflict scenes."
+
+  - token: ADELASEGH
+    name_ar: أدلاسغ
+    meaning: "الذكي / ويُلقّب باتيس «لا أب له»"
+    age: "5 (childhood montage) → 19"
+    ar: "ابن تانفوست. ذكي، مرح، لا يحمل ضغينة. يحب الألغاز والناي القصبي."
+    prompt: "Adelasegh, a slim agile 19-year-old Tuareg young man, light sky-indigo tagelmust veil covering mouth and nose, mischievous dark-brown eyes, short braid escaping the turban, sand-coloured robe with indigo trim, leather shoulder bag, small reed flute"
+    child_prompt: "Adelasegh as a young Tuareg boy (age as stated in the shot action), unveiled (boys do not veil before manhood), shaved head with a single tuft of hair, big curious mischievous dark-brown eyes, small sand-coloured tunic with indigo trim"
+    ref: assets/refs/char_adelasegh.png
+    voice: liam        # young, bright
+    rules: "Veiled as adult (no lip-sync). Unveiled only as a child. Signature colour: light/sky indigo. Screen direction: screen-RIGHT in Part 1 conflict scenes."
+
+  - token: TAFUKT
+    name_ar: تافوكت
+    meaning: "الشمس"
+    age: "3 (childhood) → 16"
+    ar: "أخت أدلاسغ. شجاعة، سريعة الملاحظة، هي من تفكّ أول علامة في الجزء الثاني."
+    prompt: "Tafukt, a 16-year-old Tuareg girl, face unveiled, warm brown skin, determined bright eyes, long fine black braids with small silver beads, loose indigo headscarf, ochre-and-indigo layered dress, silver Tuareg cross pendant, henna on hands"
+    child_prompt: "Tafukt as a Tuareg toddler girl (age as stated in the shot action), round cheeks, tiny braids with one silver bead, small ochre dress"
+    ref: assets/refs/char_tafukt.png
+    voice: lily
+    rules: "Women are unveiled. When she speaks, stage it in profile / back-to-camera / wide shot, or as voice-over, to avoid lip-sync."
+
+  - token: TANFUST
+    name_ar: تانفوست
+    meaning: "الحكاية"
+    age: "~45"
+    ar: "أخت أمامّلن وأم الطفلين. صاحبة السلطة الهادئة في المخيّم، تعزف الإمزاد."
+    prompt: "Tanfust, a dignified Tuareg noblewoman around 45, unveiled face, calm wise eyes, high cheekbones, dark braids under large indigo-black headscarf, heavy traditional silver jewellery, deep indigo robe, often holding an imzad one-string fiddle"
+    ref: assets/refs/char_tanfust.png
+    voice: matilda
+    rules: "Same lip-sync staging rule as Tafukt."
+
+  - token: AJABBAR
+    name_ar: أجبّار
+    meaning: "آخر العمالقة إيسبتن"
+    ar: "عملاق لطيف نصفه حجر، نائم في جبال طاسيلي منذ تصلّب الحجارة. بطيء الكلام، حزين، حكيم."
+    prompt: "Ajabbar, the last ancient Isebaten giant, colossal gentle humanoid ~12 m tall, body half reddish-brown sandstone with cracks and lichen, beard like eroded rock strata, sleepy kind faintly glowing amber eyes, primitive hide garments, ancient rock-art spirals and cattle engravings carved on his skin"
+    ref: assets/refs/char_giant.png
+    voice: bill        # old, slow; pitch down 2 semitones in post
+    rules: "Mouth hidden by beard -> no lip-sync. Moves very slowly."
+
+  - token: AGEZMI
+    name_ar: أغ إزمي
+    meaning: "الحدّاد (إنَد) العجوز"
+    ar: "حدّاد عجوز ساخر، رفيق أمامّلن في الرحلة. يصنع له الإزميل الذي ينقش به الحروف."
+    prompt: "Ag Ezmi, an old wiry Tuareg blacksmith (inaden), white tagelmust veil stained with soot, kind wrinkled eyes, leather apron, sinewy arms, carries small goatskin bellows and hammers"
+    ref: assets/refs/char_agezmi.png
+    voice: roger
+    rules: "Veiled. Comic relief but loyal."
+
+  - token: RAIDCHIEF
+    name_ar: "زعيم «كل إهاد» (بلا اسم)"
+    ar: "زعيم الغزاة، ملثّم بالأسود، لا يُعرف له اسم. يحتقر الألغاز ويقدّس القوة."
+    prompt: "the nameless raider chief of the Kel Ehad, towering figure in black veil and black robes, eyes painted with dark kohl, scar across the brow, bronze spear, riding a dark camel"
+    ref: assets/refs/char_raidchief.png
+    voice: callum
+    rules: "Veiled black. Never shown fully lit."
+
+  - token: GRANDMOTHER
+    name_ar: الجدّة (الراوية)
+    ar: "راوية الإطار. صوتها يربط الفيلم كله."
+    prompt: "an old Tuareg grandmother, unveiled weathered kind face, silver jewellery, dark indigo headscarf, sitting by a small campfire"
+    ref: assets/refs/char_grandmother.png
+    voice: matilda     # use stability 0.35, slower pace; she is ALSO the main narrator
+    rules: "Narration is voice-over; on-screen only in frame scenes (S01, S18), lit by fire, mostly back/profile."
+
+  - token: ILYAS
+    name_ar: إيلياس
+    ar: "الحفيد، طفل في الثامنة، فضولي."
+    prompt: "Ilyas, an 8-year-old Tuareg boy, unveiled, curly hair, oversized indigo tunic, wide curious eyes"
+    ref: assets/refs/char_ilyas.png
+    voice: null        # one line only — can use a child-like voice or be silent

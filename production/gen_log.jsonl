@@ -1,0 +1,4 @@
+{"id": "S08-01", "stage": "kf", "model": "gpt-image-2.5-sunburst", "path": "renders/keyframes/S08-01.png", "prompt_sha": "fb8a20eea1", "ts": "2026-10-06T01:48:03"}
+{"id": "S05-01", "stage": "kf", "model": "gpt-image-2.5-sunburst", "path": "renders/keyframes/S05-01.png", "prompt_sha": "7c2a565186", "ts": "2026-10-06T01:48:05"}
+{"id": "S08-01", "stage": "clip", "model": "seedance-2.5", "dur": 10, "res": "720p", "cost_usd": 4.7299999999999995, "path": "renders/clips/S08-01.mp4", "ts": "2026-10-06T01:55:37"}
+{"id": "S05-01", "stage": "clip", "model": "kling-video-v3-pro", "dur": 9, "res": "1080p", "cost_usd": 1.512, "path": "renders/clips/S05-01.mp4", "ts": "2026-10-06T02:00:50"}

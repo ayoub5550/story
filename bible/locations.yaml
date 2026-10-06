@@ -1,0 +1,32 @@
+# LOCATIONS — canonical. `token` used as [TOKEN] inside prompts.
+locations:
+  - token: FIRECAMP
+    ar: "مخيم الإطار — صخرة منقوشة بالتيفيناغ قرب نار، الهقار، اليوم"
+    prompt: "a small campfire at night beside a large dark boulder engraved with ancient tifinagh dots and circles, Ahaggar mountains silhouetted, sky full of stars and the Milky Way"
+  - token: SOFTWORLD
+    ar: "العالم في زمن الحجر الليّن"
+    prompt: "a dreamlike primordial Sahara where rock is soft like wet clay, glowing pastel mountains being shaped, giant footprints pressed into stone, green savanna patches and ancient cattle"
+  - token: CAMP
+    ar: "مخيّم أمامّلن — خيام جلد حمراء، شجرة طلح كبيرة، وادٍ في الهقار"
+    prompt: "a Tuareg nomad camp of low red-ochre leather tents in a wide wadi of the Ahaggar, a huge old acacia tree as the council place, camels resting, granite domes and basalt peaks behind"
+  - token: JINNWELL
+    ar: "بئر كل إسوف — بئر قديمة وحيدة في سهل أبيض"
+    prompt: "an ancient lonely stone-rimmed well in a blinding white empty plain, heat haze, a single dead tree, unsettling silence"
+  - token: TANEZROUFT
+    ar: "تنزروفت — أرض العطش، سهل مسطح بلا نهاية"
+    prompt: "the Tanezrouft, an endless perfectly flat gravel desert to the horizon, merciless sun, mirages, a lone small caravan"
+  - token: ASSEKREM
+    ar: "قمم الأسكرام — أعمدة بازلت بركانية، بحر من الجبال"
+    prompt: "the volcanic basalt spires and organ-pipe columns of Assekrem in the Atakor, Ahaggar, a sea of jagged peaks below, deep crevices, vast sky"
+  - token: RAIDERCAMP
+    ar: "مخيّم كل إهاد — بين صخور سوداء، نيران حمراء"
+    prompt: "a raiders' camp hidden among black volcanic boulders, red fires, dark camels, black tents, harsh shadows"
+  - token: TASSILI
+    ar: "طاسيلي ناجر — غابة الصخور الرملية، جبّارن"
+    prompt: "the Tassili n'Ajjer sandstone labyrinth, towering eroded rock pillars and arches like a stone forest, ancient rock paintings of round-headed figures and cattle on the walls"
+  - token: GIANTCAVE
+    ar: "مرقد العملاق داخل جبل في طاسيلي"
+    prompt: "a colossal natural rock shelter inside a Tassili mountain where a sleeping giant is half merged into the stone, ancient painted walls, shafts of light"
+  - token: SIGNROCKS
+    ar: "صخور العلامات — مفترقات وآبار منقوشة"
+    prompt: "smooth dark-patinated rock faces at a desert crossroads and beside a well, freshly carved pale tifinagh signs"

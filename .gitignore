@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+renders/*_cut.mp4
+renders/raw/
+renders/masters/
+*.tmp
+.DS_Store
