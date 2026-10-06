@@ -186,3 +186,9 @@
 {"id": "S13-09", "stage": "kf", "model": "gpt-image-2.5-sunburst", "path": "renders/keyframes/S13-09.jpg", "prompt_sha": "1e6996b5e7", "ts": "2026-10-06T03:29:55"}
 {"id": "S15-01", "stage": "kf", "model": "gpt-image-2.5-sunburst", "path": "renders/keyframes/S15-01.jpg", "prompt_sha": "8e947ffcba", "ts": "2026-10-06T03:30:22"}
 {"id": "S16-02", "stage": "kf", "model": "gpt-image-2.5-sunburst", "path": "renders/keyframes/S16-02.jpg", "prompt_sha": "3010109b45", "ts": "2026-10-06T03:30:46"}
+{"id": "S01-03", "stage": "clip", "model": "kling-video-v3-pro", "dur": 7, "res": "1080p", "cost_usd": 1.1760000000000002, "path": "renders/clips/S01-03.mp4", "ts": "2026-10-06T12:33:30"}
+{"id": "S01-02", "stage": "clip", "model": "kling-video-v3-pro", "dur": 8, "res": "1080p", "cost_usd": 1.344, "path": "renders/clips/S01-02.mp4", "ts": "2026-10-06T12:33:38"}
+{"id": "S01-01", "stage": "clip", "model": "kling-video-v3-pro", "dur": 9, "res": "1080p", "cost_usd": 1.512, "path": "renders/clips/S01-01.mp4", "ts": "2026-10-06T12:33:49"}
+{"id": "S01-04", "stage": "clip", "model": "kling-video-v3-pro", "dur": 7, "res": "1080p", "cost_usd": 1.1760000000000002, "path": "renders/clips/S01-04.mp4", "ts": "2026-10-06T12:34:24"}
+{"id": "S01-05", "stage": "clip", "model": "kling-video-v3-pro", "dur": 9, "res": "1080p", "cost_usd": 1.512, "path": "renders/clips/S01-05.mp4", "ts": "2026-10-06T12:35:43"}
+{"id": "S01-06", "stage": "clip", "model": "kling-video-v3-pro", "dur": 9, "res": "1080p", "cost_usd": 1.512, "path": "renders/clips/S01-06.mp4", "ts": "2026-10-06T12:35:57"}

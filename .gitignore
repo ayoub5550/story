@@ -8,3 +8,4 @@ renders/masters/
 renders/audio/*.wav
 renders/part*_animatic*.mp4
 renders/film_*.mp4
+renders/clips/.*_kf169.png

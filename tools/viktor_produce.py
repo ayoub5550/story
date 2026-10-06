@@ -1,5 +1,7 @@
 """Viktor-sandbox adapter: produce keyframes and clips for shots (uses Viktor SDK; other agents: port this to your provider).
-Usage (from /work):  uv run --with pyyaml python repos/story/tools/viktor_produce.py S05-01 [S05-02 ...] [--stage kf|clip|both] [--model seedance-2.5]
+Usage (from /work):  uv run --with pyyaml python repos/story/tools/viktor_produce.py [S05-01 ...] [--scene S05 ...] [--stage kf|clip|both] [--model kling-video-v3-pro]
+  clip stage: resumable (skips shots that already have renders/clips/<ID>.mp4), CLIP_PAR env = parallel jobs (default 4),
+  md5 de-dup + 3 retries, writes raw master to renders/raw/ and compressed copy to renders/clips/, sets status clip_done.
 - KF2V: keyframe via coworker_text2im(image_paths=ref sheets) -> renders/keyframes/<ID>.png, then image-to-video -> renders/clips/<ID>.mp4
 - T2V : text_to_video with character refs (if any) -> renders/clips/<ID>.mp4
 - PX/HF: skipped (built with ffmpeg / HyperFrames, see AGENTS.md)
@@ -35,31 +37,73 @@ async def keyframe(p):
     return dst
 
 
+CLIP_SEM = asyncio.Semaphore(int(__import__("os").environ.get("CLIP_PAR", "4")))  # parallel video jobs
+SEEN = {}  # md5 of raw clips produced in this process -> shot id (guards against provider/local-path collisions)
+RAW = ROOT / "renders/raw"      # full-quality provider output (gitignored; goes to a Release as clip masters)
+DEFAULT_CLIP_MODEL = "kling-video-v3-pro"  # owner-approved production default (2026-10-06): ~$0.17/s, 1080p, handles faces
+
+
+def md5(path):
+    return hashlib.md5(Path(path).read_bytes()).hexdigest()
+
+
+def compress(src, dst):
+    """AGENTS §6.6: git copy = 1280 wide, H.264 crf 24, no audio (native model audio is discarded)."""
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-an", "-vf", "scale=1280:-2,format=yuv420p",
+                    "-c:v", "libx264", "-preset", "slow", "-crf", "24", "-movflags", "+faststart", str(dst)], check=True)
+
+
+def set_status(sid, new):
+    """Shots are one-line YAML maps -> safe in-place edit of `status:` on the shot's line."""
+    import re
+    for f in (ROOT / "production").glob("shots_part*.yaml"):
+        t = f.read_text(encoding="utf-8")
+        t2 = re.sub(r"(\{id: %s,.*status: )(\w+)(\})" % re.escape(sid), lambda m: m.group(1) + new + m.group(3), t)
+        if t2 != t:
+            f.write_text(t2, encoding="utf-8"); return True
+    return False
+
+
 async def clip(p, model):
-    CL.mkdir(parents=True, exist_ok=True)
-    kf = next((KF / f"{p['id']}.{e}" for e in ("jpg", "png") if (KF / f"{p['id']}.{e}").exists()), KF / f"{p['id']}.jpg")
-    if p["method"] == "KF2V":
+    """Image-to-video from the shot keyframe (KF2V *and* T2V: the T2V still is the start frame -> matches the animatic).
+    Writes renders/raw/<ID>.mp4 (master) + renders/clips/<ID>.mp4 (compressed, committed) and sets status clip_done."""
+    CL.mkdir(parents=True, exist_ok=True); RAW.mkdir(parents=True, exist_ok=True)
+    kf = next((KF / f"{p['id']}.{e}" for e in ("jpg", "png") if (KF / f"{p['id']}.{e}").exists()), None)
+    imgs = None
+    if kf:
         # keyframes are 3:2 (text2im limit). Crop to 16:9 first (keep headroom: 30% of the excess from top),
         # otherwise kling returns a 3:2 clip. See AGENTS.md §6.4.
         kf169 = CL / f".{p['id']}_kf169.png"
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(kf), "-vf", "crop=iw:trunc(iw*9/16/2)*2:(ih-trunc(iw*9/16/2)*2)*0.3", str(kf169)], check=True)
         imgs = [str(kf169)]
-    else:
+    elif p["ref_images"]:
         imgs = p["ref_images"]
     dur = max(4, min(int(p["dur"]) + 1, 15))  # +1 s handle for trimming
-    r = await text_to_video(prompt=p["motion_prompt"], model=model, image_paths=imgs or None, aspect_ratio="16:9", duration_seconds=dur)
-    if (r.error or not r.local_path) and model == "seedance-2.5":
-        # seedance-2.5 sometimes rejects close/medium shots with visible faces (HTTP 422) -> fall back to kling
-        print(f"{p['id']}: seedance failed ({r.error}); falling back to kling-video-v3-pro", flush=True)
-        model = "kling-video-v3-pro"
-        r = await text_to_video(prompt=p["motion_prompt"], model=model, image_paths=imgs[:1] if imgs else None, aspect_ratio="16:9", duration_seconds=dur)
-    if p["method"] == "KF2V":
-        kf169.unlink(missing_ok=True)
-    if r.error or not r.local_path:
-        raise RuntimeError(f"{p['id']}: {r.error or r.response_text}")
-    dst = CL / f"{p['id']}.mp4"; shutil.copy(r.local_path, dst)
-    log({"id": p["id"], "stage": "clip", "model": model, "dur": r.duration_seconds, "res": r.resolution,
+    r, err = None, None
+    async with CLIP_SEM:
+        for attempt in range(3):
+            m = model
+            r = await text_to_video(prompt=p["motion_prompt"], model=m, image_paths=imgs, aspect_ratio="16:9", duration_seconds=dur)
+            if (r.error or not r.local_path) and m == "seedance-2.5":
+                # seedance-2.5 sometimes rejects close/medium shots with visible faces (HTTP 422) -> fall back to kling
+                print(f"{p['id']}: seedance failed ({r.error}); falling back to kling-video-v3-pro", flush=True)
+                m = "kling-video-v3-pro"
+                r = await text_to_video(prompt=p["motion_prompt"], model=m, image_paths=imgs[:1] if imgs else None, aspect_ratio="16:9", duration_seconds=dur)
+            if r.error or not r.local_path:
+                err = r.error or r.response_text; print(f"{p['id']}: clip attempt {attempt+1} failed: {err}", flush=True); continue
+            h = md5(r.local_path)
+            if h in SEEN and SEEN[h] != p["id"]:
+                err = f"duplicate of {SEEN[h]}"; print(f"{p['id']}: {err}, retrying", flush=True); continue
+            SEEN[h] = p["id"]; break
+        else:
+            raise RuntimeError(f"{p['id']}: {err}")
+    if kf: kf169.unlink(missing_ok=True)
+    raw = RAW / f"{p['id']}.mp4"; shutil.copy(r.local_path, raw)
+    dst = CL / f"{p['id']}.mp4"; compress(raw, dst)
+    set_status(p["id"], "clip_done")
+    log({"id": p["id"], "stage": "clip", "model": m, "dur": r.duration_seconds, "res": r.resolution,
          "cost_usd": r.usd_cost_estimate, "path": str(dst.relative_to(ROOT))})
+    print(f"{p['id']} clip ok ({m}, {r.duration_seconds}s, ${r.usd_cost_estimate})", flush=True)
     return dst
 
 
@@ -83,15 +127,21 @@ async def run(sid, stage, model):
                 return sid, "kf FAILED"
         print(sid, "kf ok", flush=True)
     if stage in ("clip", "both"):
-        out.append(str(await clip(p, model)))
+        if (CL / f"{sid}.mp4").exists() and not FORCE:
+            out.append("clip exists (use --force to redo)")
+        else:
+            out.append(str(await clip(p, model)))
     return sid, out
 
 
 async def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("ids", nargs="+")
-    ap.add_argument("--stage", default="both", choices=["kf", "clip", "both"]); ap.add_argument("--model", default="seedance-2.5")
-    ap.add_argument("--force", action="store_true", help="regenerate keyframes that already exist")
+    ap = argparse.ArgumentParser(); ap.add_argument("ids", nargs="*")
+    ap.add_argument("--stage", default="both", choices=["kf", "clip", "both"]); ap.add_argument("--model", default=DEFAULT_CLIP_MODEL)
+    ap.add_argument("--force", action="store_true", help="regenerate keyframes/clips that already exist")
+    ap.add_argument("--scene", action="append", default=[], help="add every shot of a scene, e.g. --scene S03 (repeatable)")
     a = ap.parse_args(); global FORCE; FORCE = a.force
+    for sc_id in a.scene:
+        a.ids += [sh["id"] for d in parts().values() for sc, sh in iter_shots(d) if sc["scene"] == sc_id]
     res = await asyncio.gather(*[run(i, a.stage, a.model) for i in a.ids], return_exceptions=True)
     for r in res: print(r)
 
