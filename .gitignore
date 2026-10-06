@@ -5,3 +5,5 @@ renders/raw/
 renders/masters/
 *.tmp
 .DS_Store
+renders/audio/*.wav
+renders/part*_animatic*.mp4

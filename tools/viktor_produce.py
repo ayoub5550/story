@@ -12,6 +12,7 @@ from common import ROOT, parts, iter_shots
 from build_prompt import build
 from sdk.tools.utils_tools import coworker_text2im, text_to_video
 
+FORCE = False
 KF_LOCK = asyncio.Lock()  # text2im calls run one at a time: parallel calls were seen returning the SAME local file
 KF, CL, LOG = ROOT / "renders/keyframes", ROOT / "renders/clips", ROOT / "production/gen_log.jsonl"
 
@@ -26,7 +27,9 @@ async def keyframe(p):
     KF.mkdir(parents=True, exist_ok=True)
     async with KF_LOCK:
         r = await coworker_text2im(prompt=p["keyframe_prompt"], image_paths=p["ref_images"] or None, aspect_ratio="3:2", output_format="png")
-    dst = KF / f"{p['id']}.png"; shutil.copy(r.local_path, dst)
+    # keyframes are stored as high-quality JPEG (q92) to keep git small (~0.5 MB vs 2.5 MB PNG)
+    dst = KF / f"{p['id']}.jpg"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", r.local_path, "-q:v", "2", str(dst)], check=True)
     log({"id": p["id"], "stage": "kf", "model": "gpt-image-2.5-sunburst", "path": str(dst.relative_to(ROOT)),
          "prompt_sha": hashlib.sha1(p["keyframe_prompt"].encode()).hexdigest()[:10]})
     return dst
@@ -34,7 +37,7 @@ async def keyframe(p):
 
 async def clip(p, model):
     CL.mkdir(parents=True, exist_ok=True)
-    kf = KF / f"{p['id']}.png"
+    kf = next((KF / f"{p['id']}.{e}" for e in ("jpg", "png") if (KF / f"{p['id']}.{e}").exists()), KF / f"{p['id']}.jpg")
     if p["method"] == "KF2V":
         # keyframes are 3:2 (text2im limit). Crop to 16:9 first (keep headroom: 30% of the excess from top),
         # otherwise kling returns a 3:2 clip. See AGENTS.md §6.4.
@@ -66,8 +69,19 @@ async def run(sid, stage, model):
     if p["method"] in ("PX", "HF"):
         return sid, "skipped (PX/HF built manually)"
     out = []
-    if p["method"] == "KF2V" and stage in ("kf", "both"):
-        out.append(str(await keyframe(p)))
+    # T2V shots also get a still in --stage kf: it is the animatic frame and can be used as an I2V start frame later
+    if p["method"] in ("KF2V", "T2V") and stage in ("kf", "both"):
+        if any((KF / f"{sid}.{e}").exists() for e in ("jpg", "png")) and not FORCE:
+            out.append("kf exists (use --force to redo)")
+        else:
+            for attempt in range(3):
+                try:
+                    out.append(str(await keyframe(p))); break
+                except Exception as e:  # transient API errors: retry
+                    print(f"{sid}: kf attempt {attempt+1} failed: {e}", flush=True)
+            else:
+                return sid, "kf FAILED"
+        print(sid, "kf ok", flush=True)
     if stage in ("clip", "both"):
         out.append(str(await clip(p, model)))
     return sid, out
@@ -76,7 +90,8 @@ async def run(sid, stage, model):
 async def main():
     ap = argparse.ArgumentParser(); ap.add_argument("ids", nargs="+")
     ap.add_argument("--stage", default="both", choices=["kf", "clip", "both"]); ap.add_argument("--model", default="seedance-2.5")
-    a = ap.parse_args()
+    ap.add_argument("--force", action="store_true", help="regenerate keyframes that already exist")
+    a = ap.parse_args(); global FORCE; FORCE = a.force
     res = await asyncio.gather(*[run(i, a.stage, a.model) for i in a.ids], return_exceptions=True)
     for r in res: print(r)
 

@@ -1,0 +1,273 @@
+{
+ "lines": [
+  {
+   "shot": "S01-04",
+   "scene": "S01",
+   "speaker": "إيلياس",
+   "text": "جدّتي… من كتب هذا؟",
+   "start": 21.4,
+   "shot_end": 27.0,
+   "duration": 2.51
+  },
+  {
+   "shot": "S01-05",
+   "scene": "S01",
+   "speaker": "الجدّة",
+   "text": "هذا؟ هذا كتبه رجلٌ كان يخاف أن يُنسى.",
+   "start": 27.4,
+   "shot_end": 35.0,
+   "duration": 5.25
+  },
+  {
+   "shot": "S02-01",
+   "scene": "S02",
+   "speaker": "NARRATOR",
+   "text": "في البدء… كانت الحجارة ليّنة كالطين. كان كلّ من يمشي يترك أثرًا لا يزول.",
+   "start": 50.4,
+   "shot_end": 58.0,
+   "duration": 8.67,
+   "note": "runs 1.1s into next shot (ok for VO)"
+  },
+  {
+   "shot": "S02-05",
+   "scene": "S02",
+   "speaker": "NARRATOR",
+   "text": "كان العمالقة أقوياء… لكنهم لم يعرفوا الكلام الذي يبقى. رسموا على الصخر، ولم يفهم رسمَهم أحد.",
+   "start": 81.4,
+   "shot_end": 89.0,
+   "duration": 10.45
+  },
+  {
+   "shot": "S02-06",
+   "scene": "S02",
+   "speaker": "NARRATOR",
+   "text": "ثم جاء زمن الوضوح… زمن أمامّلن.",
+   "start": 89.4,
+   "shot_end": 98.0,
+   "duration": 4.44
+  },
+  {
+   "shot": "S03-03",
+   "scene": "S03",
+   "speaker": "شيخ",
+   "text": "ما الذي يمشي بلا أقدام، ويشرب بلا فم، ويموت إذا وقف؟",
+   "start": 124.4,
+   "shot_end": 130.0,
+   "duration": 6.61
+  },
+  {
+   "shot": "S03-04",
+   "scene": "S03",
+   "speaker": "أمامّلن",
+   "text": "النهر… والزمن.",
+   "start": 130.4,
+   "shot_end": 136.0,
+   "duration": 2.19
+  },
+  {
+   "shot": "S03-06",
+   "scene": "S03",
+   "speaker": "NARRATOR",
+   "text": "كانوا يسمّونه «صاحب الوضوح». لم يغلبه لغزٌ قط.",
+   "start": 142.4,
+   "shot_end": 150.0,
+   "duration": 5.88
+  },
+  {
+   "shot": "S03-08",
+   "scene": "S03",
+   "speaker": "قارئة الرمل",
+   "text": "الولد الذي في بطنك… سيرى أبعد من خاله.",
+   "start": 158.4,
+   "shot_end": 166.0,
+   "duration": 4.75
+  },
+  {
+   "shot": "S04-02",
+   "scene": "S04",
+   "speaker": "أمامّلن",
+   "text": "نقطتان تعني «ماء». دائرة تعني «مخيّم». هذه لعبتنا… لا يعرفها أحدٌ غيرنا.",
+   "start": 187.4,
+   "shot_end": 196.0,
+   "duration": 8.59
+  },
+  {
+   "shot": "S04-06",
+   "scene": "S04",
+   "speaker": "أدلاسغ_طفل",
+   "text": "الظلّ! يا خالي، الظلّ!",
+   "start": 216.4,
+   "shot_end": 224.0,
+   "duration": 3.13
+  },
+  {
+   "shot": "S04-08",
+   "scene": "S04",
+   "speaker": "NARRATOR",
+   "text": "ومنذ ذلك اليوم… صار في قلب الخال حجرٌ صغير. حجرٌ لم يكن ليّنًا.",
+   "start": 230.4,
+   "shot_end": 238.0,
+   "duration": 7.89,
+   "note": "runs 0.3s into next shot (ok for VO)"
+  },
+  {
+   "shot": "S05-01",
+   "scene": "S05",
+   "speaker": "أمامّلن",
+   "text": "الماء في بئرنا مُرّ. اذهب إلى البئر البيضاء وراء السهل، وائتِنا بماءٍ عذب.",
+   "start": 250.4,
+   "shot_end": 258.0,
+   "duration": 7.24
+  },
+  {
+   "shot": "S05-02",
+   "scene": "S05",
+   "speaker": "تانفوست",
+   "text": "تلك بئر «كل إسوف»… لا يعود منها أحد.",
+   "start": 258.4,
+   "shot_end": 264.0,
+   "duration": 4.28
+  },
+  {
+   "shot": "S05-03",
+   "scene": "S05",
+   "speaker": "أدلاسغ",
+   "text": "إذن سأكون أول من يعود.",
+   "start": 264.4,
+   "shot_end": 270.0,
+   "duration": 2.59
+  },
+  {
+   "shot": "S05-06",
+   "scene": "S05",
+   "speaker": "أرواح",
+   "text": "من يشرب من بئرنا… يبقى معنا.",
+   "start": 285.4,
+   "shot_end": 293.0,
+   "duration": 3.24
+  },
+  {
+   "shot": "S05-07",
+   "scene": "S05",
+   "speaker": "أدلاسغ",
+   "text": "لكم لغزٌ أولًا: من يقف أمامكم ولا تستطيعون لمسه؟",
+   "start": 293.4,
+   "shot_end": 299.0,
+   "duration": 5.25
+  },
+  {
+   "shot": "S05-09",
+   "scene": "S05",
+   "speaker": "أدلاسغ",
+   "text": "الجواب: أنتم.",
+   "start": 307.4,
+   "shot_end": 315.0,
+   "duration": 2.12
+  },
+  {
+   "shot": "S06-03",
+   "scene": "S06",
+   "speaker": "NARRATOR",
+   "text": "أرسله خاله بقافلة إلى تنزروفت… أرض العطش، بقربة تبكي ماءها قطرةً قطرة.",
+   "start": 344.4,
+   "shot_end": 352.0,
+   "duration": 9.48,
+   "note": "runs 1.9s into next shot (ok for VO)"
+  },
+  {
+   "shot": "S06-07",
+   "scene": "S06",
+   "speaker": "أدلاسغ",
+   "text": "النمل لا يحمل حبًّا إلى حيث لا ماء.",
+   "start": 373.4,
+   "shot_end": 380.0,
+   "duration": 3.63
+  },
+  {
+   "shot": "S06-10",
+   "scene": "S06",
+   "speaker": "أدلاسغ",
+   "text": "قربتك يا خالي… كانت عطشى أكثر مني.",
+   "start": 396.4,
+   "shot_end": 403.0,
+   "duration": 3.97
+  },
+  {
+   "shot": "S07-02",
+   "scene": "S07",
+   "speaker": "أمامّلن",
+   "text": "في قاع ذلك الصدع نبتة لا تنبت إلا هنا. أمّك مريضة… انزل.",
+   "start": 418.4,
+   "shot_end": 425.0,
+   "duration": 6.92,
+   "note": "runs 0.3s into next shot (ok for VO)"
+  },
+  {
+   "shot": "S07-11",
+   "scene": "S07",
+   "speaker": "أدلاسغ",
+   "text": "لغزٌ يا خالي. ما الذي لا يستطيع الأب أن يعطيه… ولا يستطيع الخال أن يأخذه… ويحمله ابن الأخت؟",
+   "start": 480.4,
+   "shot_end": 490.0,
+   "duration": 8.44
+  },
+  {
+   "shot": "S07-12",
+   "scene": "S07",
+   "speaker": "أمامّلن",
+   "text": "…الدم. دم أمّك. اسمي… من بعدي.",
+   "start": 490.4,
+   "shot_end": 500.0,
+   "duration": 4.68
+  },
+  {
+   "shot": "S08-02",
+   "scene": "S08",
+   "speaker": "أمامّلن",
+   "text": "لم أكن أخاف منك. كنت أخاف أن تراني أصغُر… أن يأتي يومٌ لا يذكرني فيه أحد.",
+   "start": 509.4,
+   "shot_end": 518.0,
+   "duration": 7.81
+  },
+  {
+   "shot": "S08-03",
+   "scene": "S08",
+   "speaker": "أدلاسغ",
+   "text": "وكيف يُنسى من حفر كل هذه الألغاز في رؤوسنا؟",
+   "start": 518.4,
+   "shot_end": 525.0,
+   "duration": 4.36
+  },
+  {
+   "shot": "S08-06",
+   "scene": "S08",
+   "speaker": "NARRATOR",
+   "text": "في ذلك الفجر… تصلّبت الحجارة. ولم يعد أحدٌ يترك أثرًا.",
+   "start": 542.4,
+   "shot_end": 552.0,
+   "duration": 6.53
+  },
+  {
+   "shot": "S08-08",
+   "scene": "S08",
+   "speaker": "أمامّلن",
+   "text": "انتهى زمن الأثر يا ابن أختي.",
+   "start": 560.4,
+   "shot_end": 570.0,
+   "duration": 2.69
+  },
+  {
+   "shot": "S09-01",
+   "scene": "S09",
+   "speaker": "أدلاسغ",
+   "text": "خالي… تافوكت في المخيّم.",
+   "start": 570.4,
+   "shot_end": 578.0,
+   "duration": 2.59
+  }
+ ],
+ "warnings": [
+  "S02-05: line ends 91.9s, overlaps next line at 89.4s",
+  "S03-03: line ends 131.0s, overlaps next line at 130.4s"
+ ]
+}

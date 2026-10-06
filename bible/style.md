@@ -11,7 +11,7 @@ Hand-painted 2D animated feature film, clean expressive ink linework, cel-shaded
 
 ## NEGATIVE (append where the model supports it, or as "Avoid: ...")
 ```
-photorealistic, 3D render, CGI plastic, anime chibi, modern objects, guns, cars, horses, mosques, Arabic or Latin text, logos, deformed hands, visible mouth on veiled men
+photorealistic, 3D render, CGI plastic, anime chibi, modern objects, guns, cars, horses, mosques, Arabic or Latin text, logos, deformed hands, visible mouth on veiled men, comic panels, split screen, collage, multiple frames, storyboard grid
 ```
 
 ## Palette by world-state

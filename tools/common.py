@@ -7,7 +7,7 @@ STYLE_PREFIX = ("Hand-painted 2D animated feature film, clean expressive ink lin
                 "painterly gouache backgrounds, warm Saharan palette (ochre, burnt sienna, sand gold, deep indigo, "
                 "night ultramarine), subtle film grain, cinematic 16:9 composition, no text, no subtitles, no watermark.")
 NEGATIVE = ("photorealistic, 3D render, CGI plastic, anime chibi, modern objects, guns, cars, horses, mosques, "
-            "Arabic or Latin text, logos, deformed hands, visible mouth on veiled men")
+            "Arabic or Latin text, logos, deformed hands, visible mouth on veiled men, comic panels, split screen, collage, multiple frames, storyboard grid")
 
 
 def load(rel):

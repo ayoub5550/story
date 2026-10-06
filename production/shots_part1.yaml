@@ -15,57 +15,57 @@ scenes:
   tod: night
   loc: FIRECAMP
   shots:
-  - {id: S01-01, dur: 8, method: T2V, chars: [], camera: "slow tilt down from Milky Way to horizon", action: "dense star field and Milky Way over the dark Ahaggar silhouette, a tiny warm glow of a campfire appears at the bottom of frame", sfx: "wind, single long imzad note", status: todo}
-  - {id: S01-02, dur: 7, method: KF2V, chars: [GRANDMOTHER, ILYAS], camera: "wide, static, slight push", action: "an old grandmother and a small boy sit by a campfire beside a large engraved boulder, seen from behind, firelight flickering", sfx: "fire crackle", status: todo}
-  - {id: S01-03, dur: 6, method: KF2V, chars: [ILYAS], camera: "macro close-up", action: "a child's small fingers trace ancient engraved dots and circles on dark patinated rock, warm firelight", sfx: "finger on stone", notes: "HF overlay: crisp tifinagh glyphs on the rock", status: todo}
-  - {id: S01-04, dur: 6, method: KF2V, chars: [ILYAS], camera: "over-the-shoulder from behind the boy toward grandmother", action: "the boy turns his head toward his grandmother, face mostly hidden, curious posture", dlg: "إيلياس: جدّتي… من كتب هذا؟", status: todo}
-  - {id: S01-05, dur: 8, method: KF2V, chars: [GRANDMOTHER], camera: "profile medium close-up", action: "the grandmother in profile tosses a twig into the fire, a burst of sparks, a knowing smile", dlg: "الجدّة: هذا؟ هذا كتبه رجلٌ كان يخاف أن يُنسى.", notes: "profile only — lip-sync rule", status: todo}
-  - {id: S01-06, dur: 8, method: KF2V, chars: [], camera: "tilt up following sparks", action: "glowing sparks rise into the night sky and blend into the stars", sfx: "music swell (imzad)", status: todo}
-  - {id: S01-07, dur: 7, method: HF, chars: [], camera: "n/a", action: "stars rearrange into glowing tifinagh dots on black, dissolve to S02", status: todo}
+  - {id: S01-01, dur: 8, method: T2V, chars: [], camera: "slow tilt down from Milky Way to horizon", action: "dense star field and Milky Way over the dark Ahaggar silhouette, a tiny warm glow of a campfire appears at the bottom of frame", sfx: "wind, single long imzad note", status: kf_done}
+  - {id: S01-02, dur: 7, method: KF2V, chars: [GRANDMOTHER, ILYAS], camera: "wide, static, slight push", action: "an old grandmother and a small boy sit by a campfire beside a large engraved boulder, seen from behind, firelight flickering", sfx: "fire crackle", status: kf_done}
+  - {id: S01-03, dur: 6, method: KF2V, chars: [ILYAS], camera: "macro close-up", action: "a child's small fingers trace ancient engraved dots and circles on dark patinated rock, warm firelight", sfx: "finger on stone", notes: "HF overlay: crisp tifinagh glyphs on the rock", status: kf_done}
+  - {id: S01-04, dur: 6, method: KF2V, chars: [ILYAS], camera: "over-the-shoulder from behind the boy toward grandmother", action: "single frame: the boy, seen from behind, turns his head toward his grandmother; she is an unveiled old woman with a dark headscarf and silver jewellery, lit by the fire; boy face mostly hidden, curious posture", dlg: "إيلياس: جدّتي… من كتب هذا؟", status: kf_done}
+  - {id: S01-05, dur: 8, method: KF2V, chars: [GRANDMOTHER], camera: "profile medium close-up", action: "the grandmother in profile tosses a twig into the fire, a burst of sparks, a knowing smile", dlg: "الجدّة: هذا؟ هذا كتبه رجلٌ كان يخاف أن يُنسى.", notes: "profile only — lip-sync rule", status: kf_done}
+  - {id: S01-06, dur: 8, method: KF2V, chars: [], camera: "tilt up following sparks", action: "glowing sparks rise into the night sky and blend into the stars", sfx: "music swell (imzad)", status: kf_done}
+  - {id: S01-07, dur: 7, method: HF, chars: [], camera: "n/a", action: "stars rearrange into glowing tifinagh dots on black, dissolve to S02", status: clip_done}
 
 - scene: S02
   title: "زمن الحجر الليّن"
   tod: mythic
   loc: SOFTWORLD
   shots:
-  - {id: S02-01, dur: 8, method: T2V, chars: [], camera: "slow aerial glide", action: "primordial dream-Sahara, pastel glowing mountains soft like wet clay, giant footprints pressed into stone, green savanna patches", vo: "في البدء… كانت الحجارة ليّنة كالطين. كان كلّ من يمشي يترك أثرًا لا يزول.", status: todo}
-  - {id: S02-02, dur: 8, method: T2V, chars: [AJABBAR], camera: "low angle tracking", action: "colossal gentle stone-skinned giants walk slowly, their feet sinking deep into soft rock leaving footprints", sfx: "deep soft thuds", notes: "Ajabbar ref for giant design (several giants)", status: todo}
-  - {id: S02-03, dur: 8, method: T2V, chars: [AJABBAR], camera: "medium, slow push", action: "a giant's huge hands knead and shape a small mountain like bread dough", status: todo}
-  - {id: S02-04, dur: 7, method: T2V, chars: [], camera: "slow pan along rock wall", action: "prehistoric rock-art cattle and round-headed figures painted on a rock wall come alive and gently move", status: todo}
-  - {id: S02-05, dur: 8, method: KF2V, chars: [AJABBAR], camera: "medium wide", action: "a giant scratches random clumsy marks on a rock with one finger, looks at them, scratches his head puzzled and walks away", vo: "كان العمالقة أقوياء… لكنهم لم يعرفوا الكلام الذي يبقى. رسموا على الصخر، ولم يفهم رسمَهم أحد.", status: todo}
-  - {id: S02-06, dur: 9, method: T2V, chars: [], camera: "locked wide, time-lapse", action: "time-lapse: giants slowly merge into the mountains and become rock formations, pastel light turns into clear golden desert daylight", vo: "ثم جاء زمن الوضوح… زمن أمامّلن.", status: todo}
-  - {id: S02-07, dur: 12, method: HF, chars: [], camera: "n/a", action: "TITLE: glowing dots assemble into the name in tifinagh, then Arabic title «أمامّلن — حين تصلّبت الحجارة» over painted Ahaggar plate", sfx: "tende hit + imzad theme", status: todo}
+  - {id: S02-01, dur: 8, method: T2V, chars: [], camera: "slow aerial glide", action: "primordial dream-Sahara, pastel glowing mountains soft like wet clay, giant footprints pressed into stone, green savanna patches", vo: "في البدء… كانت الحجارة ليّنة كالطين. كان كلّ من يمشي يترك أثرًا لا يزول.", status: kf_done}
+  - {id: S02-02, dur: 8, method: T2V, chars: [AJABBAR], camera: "low angle tracking", action: "colossal gentle stone-skinned giants walk slowly, their feet sinking deep into soft rock leaving footprints", sfx: "deep soft thuds", notes: "Ajabbar ref for giant design (several giants)", status: kf_done}
+  - {id: S02-03, dur: 8, method: T2V, chars: [AJABBAR], camera: "medium, slow push", action: "a giant's huge hands knead and shape a small mountain like bread dough", status: kf_done}
+  - {id: S02-04, dur: 7, method: T2V, chars: [], camera: "slow pan along rock wall", action: "prehistoric rock-art cattle and round-headed figures painted on a rock wall come alive and gently move", status: kf_done}
+  - {id: S02-05, dur: 8, method: KF2V, chars: [AJABBAR], camera: "medium wide", action: "one single continuous image (not a comic): a giant kneels by a flat rock and scratches random clumsy marks on it with one finger, then looks at them, puzzled, scratching his head", notes: "keyframe = puzzled moment; motion: he scratches his head and turns away", vo: "كان العمالقة أقوياء… لكنهم لم يعرفوا الكلام الذي يبقى. رسموا على الصخر، ولم يفهم رسمَهم أحد.", status: kf_done}
+  - {id: S02-06, dur: 9, method: T2V, chars: [], camera: "locked wide, time-lapse", action: "one single wide image (not a sequence): seated giants half-merged into the mountains, their bodies becoming rock formations, the dreamy pastel sky giving way to clear golden desert daylight", notes: "motion: slow time-lapse, giants fully turn to rock, light shifts pastel -> golden", vo: "ثم جاء زمن الوضوح… زمن أمامّلن.", status: kf_done}
+  - {id: S02-07, dur: 12, method: HF, chars: [], camera: "n/a", action: "TITLE: glowing dots assemble into the name in tifinagh, then Arabic title «أمامّلن — حين تصلّبت الحجارة» over painted Ahaggar plate", sfx: "tende hit + imzad theme", status: clip_done}
 
 - scene: S03
   title: "صاحب الوضوح"
   tod: day->sunset
   loc: CAMP
   shots:
-  - {id: S03-01, dur: 7, method: T2V, chars: [], camera: "wide establishing, slow pan", action: "Tuareg camp of low red-ochre leather tents in a wide wadi, a huge old acacia, camels resting, granite domes behind, bright day", sfx: "camels, distant voices", status: todo}
-  - {id: S03-02, dur: 7, method: KF2V, chars: [AMAMELLEN], camera: "slow push-in through the circle", action: "a circle of veiled men and unveiled women seated under the acacia, Amamellen in deep indigo at the centre", status: todo}
-  - {id: S03-03, dur: 6, method: KF2V, chars: [], camera: "medium", action: "a veiled elder in white raises a finger and poses a riddle", dlg: "شيخ: ما الذي يمشي بلا أقدام، ويشرب بلا فم، ويموت إذا وقف؟", status: todo}
-  - {id: S03-04, dur: 6, method: KF2V, chars: [AMAMELLEN], camera: "close-up on eyes", action: "Amamellen calmly raises his hand, amber eyes confident", dlg: "أمامّلن: النهر… والزمن.", status: todo}
-  - {id: S03-05, dur: 6, method: KF2V, chars: [], camera: "wide", action: "the circle reacts with admiration, a woman in profile ululates, hands clapping", sfx: "ululation, murmurs", status: todo}
-  - {id: S03-06, dur: 8, method: KF2V, chars: [AMAMELLEN], camera: "medium close, slow push", action: "Amamellen basks in the praise, a glint of pride in his eyes", vo: "كانوا يسمّونه «صاحب الوضوح». لم يغلبه لغزٌ قط.", status: todo}
-  - {id: S03-07, dur: 8, method: T2V, tod: sunset, chars: [], camera: "wide, static", action: "sunset turns the tents and the acacia silhouette orange, long shadows", status: todo}
-  - {id: S03-08, dur: 8, method: KF2V, tod: sunset, chars: [TANFUST], camera: "interior medium, warm lamp", action: "inside a leather tent, pregnant Tanfust sits with hand on belly while an old sand-reader woman throws sand on a hide and studies the lines", dlg: "قارئة الرمل: الولد الذي في بطنك… سيرى أبعد من خاله.", notes: "sand-reader filmed from behind/profile", status: todo}
-  - {id: S03-09, dur: 6, method: KF2V, tod: sunset, chars: [], camera: "top-down insert", action: "fine sand lines and patterns on a tanned hide", status: todo}
-  - {id: S03-10, dur: 8, method: KF2V, tod: sunset, chars: [AMAMELLEN], camera: "medium close at tent entrance, backlit by sunset", action: "Amamellen stands in the tent entrance, his eyes freeze; a gust of wind erases the sand lines", sfx: "gust", status: todo}
+  - {id: S03-01, dur: 7, method: T2V, chars: [], camera: "wide establishing, slow pan", action: "Tuareg camp of low red-ochre leather tents in a wide wadi, a huge old acacia, camels resting, granite domes behind, bright day", sfx: "camels, distant voices", status: kf_done}
+  - {id: S03-02, dur: 7, method: KF2V, chars: [AMAMELLEN], camera: "slow push-in through the circle", action: "a circle of veiled men and unveiled women seated under the acacia, Amamellen in deep indigo at the centre", status: kf_done}
+  - {id: S03-03, dur: 6, method: KF2V, chars: [], camera: "medium", action: "a veiled elder in white raises a finger and poses a riddle", dlg: "شيخ: ما الذي يمشي بلا أقدام، ويشرب بلا فم، ويموت إذا وقف؟", status: kf_done}
+  - {id: S03-04, dur: 6, method: KF2V, chars: [AMAMELLEN], camera: "close-up on eyes", action: "Amamellen calmly raises his hand, amber eyes confident", dlg: "أمامّلن: النهر… والزمن.", status: kf_done}
+  - {id: S03-05, dur: 6, method: KF2V, chars: [], camera: "wide", action: "the circle reacts with admiration, a woman in profile ululates, hands clapping", sfx: "ululation, murmurs", status: kf_done}
+  - {id: S03-06, dur: 8, method: KF2V, chars: [AMAMELLEN], camera: "medium close, slow push", action: "Amamellen basks in the praise, a glint of pride in his eyes", vo: "كانوا يسمّونه «صاحب الوضوح». لم يغلبه لغزٌ قط.", status: kf_done}
+  - {id: S03-07, dur: 8, method: T2V, tod: sunset, chars: [], camera: "wide, static", action: "sunset turns the tents and the acacia silhouette orange, long shadows", status: kf_done}
+  - {id: S03-08, dur: 8, method: KF2V, tod: sunset, chars: [TANFUST], camera: "interior medium, warm lamp", action: "inside a leather tent, pregnant Tanfust sits with hand on belly while an old sand-reader woman throws sand on a hide and studies the lines", dlg: "قارئة الرمل: الولد الذي في بطنك… سيرى أبعد من خاله.", notes: "sand-reader filmed from behind/profile", status: kf_done}
+  - {id: S03-09, dur: 6, method: KF2V, tod: sunset, chars: [], camera: "top-down insert", action: "fine sand lines and patterns on a tanned hide", status: kf_done}
+  - {id: S03-10, dur: 8, method: KF2V, tod: sunset, chars: [AMAMELLEN], camera: "medium close at tent entrance, backlit by sunset", action: "Amamellen stands in the tent entrance, his eyes freeze; a gust of wind erases the sand lines", sfx: "gust", status: kf_done}
 
 - scene: S04
   title: "لعبة النقاط"
   tod: montage
   loc: CAMP
   shots:
-  - {id: S04-01, dur: 7, method: KF2V, tod: day, chars: [AMAMELLEN], camera: "low angle", action: "Amamellen lifts a newborn baby wrapped in indigo cloth up toward the sky, joy in his eyes", sfx: "baby cry, ululation", status: todo}
-  - {id: S04-02, dur: 9, method: KF2V, tod: sunset, child: [ADELASEGH, TAFUKT], chars: [AMAMELLEN, ADELASEGH, TAFUKT], camera: "wide, golden hour", action: "Amamellen sits on the sand with a 6-year-old boy and a 3-year-old girl, drawing dots, circles and lines in the sand with his finger", dlg: "أمامّلن: نقطتان تعني «ماء». دائرة تعني «مخيّم». هذه لعبتنا… لا يعرفها أحدٌ غيرنا.", status: todo}
-  - {id: S04-03, dur: 7, method: KF2V, tod: sunset, chars: [], camera: "top-down insert", action: "an adult finger draws two dots, a circle and a line in smooth sand", notes: "CRITICAL PLOT SEED — HF overlay to make the exact symbols crisp; same symbols reused in S14/S15", status: todo}
-  - {id: S04-04, dur: 6, method: KF2V, tod: sunset, child: [ADELASEGH, TAFUKT], chars: [ADELASEGH, TAFUKT], camera: "medium", action: "the two children laugh and copy the symbols in the sand", sfx: "kids laughing", status: todo}
-  - {id: S04-05, dur: 7, method: KF2V, tod: day, child: [ADELASEGH], chars: [ADELASEGH], camera: "medium wide under acacia", action: "a 10-year-old boy answers riddles before seated adults who applaud", status: todo}
-  - {id: S04-06, dur: 8, method: KF2V, tod: day, child: [ADELASEGH], chars: [ADELASEGH, AMAMELLEN], camera: "wide council, boy seen from behind", action: "in the riddle council a 12-year-old boy jumps up shouting the answer before Amamellen can speak", dlg: "أدلاسغ (12 سنة): الظلّ! يا خالي، الظلّ!", status: todo}
-  - {id: S04-07, dur: 6, method: KF2V, tod: day, chars: [AMAMELLEN], camera: "medium", action: "everyone laughs; Amamellen laughs too, shoulders shaking", sfx: "laughter", status: todo}
-  - {id: S04-08, dur: 8, method: KF2V, tod: day, chars: [AMAMELLEN], camera: "very slow push into eyes", action: "laughter fades; Amamellen's amber eyes do not laugh, a cold hardness", vo: "ومنذ ذلك اليوم… صار في قلب الخال حجرٌ صغير. حجرٌ لم يكن ليّنًا.", status: todo}
-  - {id: S04-09, dur: 12, method: KF2V, tod: day, chars: [ADELASEGH], camera: "match cut / wind wipe", action: "a gust of sand sweeps across the boy and reveals Adelasegh at 19 wrapping his first sky-indigo tagelmust veil, eyes smiling", sfx: "wind whoosh, flute motif", status: todo}
+  - {id: S04-01, dur: 7, method: KF2V, tod: day, chars: [AMAMELLEN], camera: "low angle", action: "Amamellen lifts a newborn baby wrapped in indigo cloth up toward the sky, joy in his eyes", sfx: "baby cry, ululation", status: kf_done}
+  - {id: S04-02, dur: 9, method: KF2V, tod: sunset, child: [ADELASEGH, TAFUKT], chars: [AMAMELLEN, ADELASEGH, TAFUKT], camera: "wide, golden hour", action: "Amamellen sits on the sand with a 6-year-old boy and a 3-year-old girl, drawing dots, circles and lines in the sand with his finger", dlg: "أمامّلن: نقطتان تعني «ماء». دائرة تعني «مخيّم». هذه لعبتنا… لا يعرفها أحدٌ غيرنا.", status: kf_done}
+  - {id: S04-03, dur: 7, method: KF2V, tod: sunset, chars: [], camera: "single top-down close-up filling the whole frame with sand", action: "an adult finger draws in smooth golden sand: two dots, a circle and a straight line, side by side, warm low sunset light raking across the sand", notes: "CRITICAL PLOT SEED — HF overlay to make the exact symbols crisp; same symbols reused in S14/S15", status: kf_done}
+  - {id: S04-04, dur: 6, method: KF2V, tod: sunset, child: [ADELASEGH, TAFUKT], chars: [ADELASEGH, TAFUKT], camera: "medium", action: "the two children laugh and copy the symbols in the sand", sfx: "kids laughing", status: kf_done}
+  - {id: S04-05, dur: 7, method: KF2V, tod: day, child: [ADELASEGH], chars: [ADELASEGH], camera: "medium wide under acacia", action: "a 10-year-old boy answers riddles before seated adults who applaud", status: kf_done}
+  - {id: S04-06, dur: 8, method: KF2V, tod: day, child: [ADELASEGH], chars: [ADELASEGH, AMAMELLEN], camera: "wide council, boy seen from behind", action: "in the riddle council a 12-year-old boy jumps up shouting the answer before Amamellen can speak", dlg: "أدلاسغ (12 سنة): الظلّ! يا خالي، الظلّ!", status: kf_done}
+  - {id: S04-07, dur: 6, method: KF2V, tod: day, chars: [AMAMELLEN], camera: "medium", action: "everyone laughs; Amamellen laughs too, shoulders shaking", sfx: "laughter", status: kf_done}
+  - {id: S04-08, dur: 8, method: KF2V, tod: day, chars: [AMAMELLEN], camera: "very slow push into eyes", action: "laughter fades; Amamellen's amber eyes do not laugh, a cold hardness", vo: "ومنذ ذلك اليوم… صار في قلب الخال حجرٌ صغير. حجرٌ لم يكن ليّنًا.", status: kf_done}
+  - {id: S04-09, dur: 12, method: KF2V, tod: day, chars: [ADELASEGH], camera: "match cut / wind wipe", action: "only ONE person: Adelasegh at 19, alone, wrapping his first sky-indigo tagelmust veil around his head, eyes smiling, a curtain of blowing sand sweeping across the left of the frame", notes: "edit: the sand gust wipes from the boy of S04-08 era to this adult (wipe done in the edit, not in the image)", sfx: "wind whoosh, flute motif", status: kf_done}
 
 - scene: S05
   title: "الفخ الأول: بئر كل إسوف"
@@ -73,51 +73,51 @@ scenes:
   loc: [CAMP, JINNWELL]
   shots:
   - {id: S05-01, dur: 8, method: KF2V, loc: CAMP, chars: [AMAMELLEN, ADELASEGH], camera: "two-shot, uncle screen-left nephew screen-right", action: "morning in camp, Amamellen speaks gravely to Adelasegh", dlg: "أمامّلن: الماء في بئرنا مُرّ. اذهب إلى البئر البيضاء وراء السهل، وائتِنا بماءٍ عذب.", status: clip_done}
-  - {id: S05-02, dur: 6, method: KF2V, loc: CAMP, chars: [TANFUST], camera: "from behind Tanfust", action: "Tanfust steps forward between them, seen from behind, tense posture", dlg: "تانفوست: تلك بئر «كل إسوف»… لا يعود منها أحد.", status: todo}
-  - {id: S05-03, dur: 6, method: KF2V, loc: CAMP, chars: [ADELASEGH], camera: "medium", action: "Adelasegh ties a goatskin waterbag to his shoulder with a playful shrug", dlg: "أدلاسغ: إذن سأكون أول من يعود.", status: todo}
-  - {id: S05-04, dur: 8, method: T2V, loc: JINNWELL, chars: [ADELASEGH], camera: "extreme wide", action: "a blinding white empty plain, shimmering heat haze, a lonely stone-rimmed well and a dead tree, a tiny figure approaching", sfx: "total silence, high whine", status: todo}
-  - {id: S05-05, dur: 7, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "medium at the well", action: "Adelasegh lowers a leather bucket into the well on a rope", status: todo}
-  - {id: S05-06, dur: 8, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "slow 180° orbit", action: "pale translucent white spirit shapes (Kel Essuf) rise from the mirage and circle him, whispering", dlg: "أرواح (همس): من يشرب من بئرنا… يبقى معنا.", notes: "desaturated palette", status: todo}
-  - {id: S05-07, dur: 6, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "insert", action: "his hand pulls a small round polished silver mirror amulet from his bag and raises it", dlg: "أدلاسغ: لكم لغزٌ أولًا: من يقف أمامكم ولا تستطيعون لمسه؟", status: todo}
-  - {id: S05-08, dur: 8, method: KF2V, loc: JINNWELL, chars: [], camera: "close on mirror", action: "the spirits lean toward the mirror, see their own reflection for the first time and freeze, enchanted", status: todo}
-  - {id: S05-09, dur: 8, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "medium wide", action: "Adelasegh quietly fills the waterbag and walks backward away from the frozen spirits, mirror still raised", dlg: "أدلاسغ: الجواب: أنتم.", status: todo}
-  - {id: S05-10, dur: 8, method: KF2V, loc: CAMP, tod: sunset, chars: [ADELASEGH], camera: "wide, sunset", action: "back in camp at sunset Adelasegh pours clear water into a bowl, people cheer around him", sfx: "cheers, ululation", status: todo}
-  - {id: S05-11, dur: 7, method: KF2V, loc: CAMP, tod: sunset, chars: [AMAMELLEN], camera: "close-up of hand, rack focus to eyes", action: "at a distance Amamellen's hand tightens on his takouba hilt", status: todo}
+  - {id: S05-02, dur: 6, method: KF2V, loc: CAMP, chars: [TANFUST], camera: "from behind Tanfust", action: "Tanfust steps forward between them, seen from behind, tense posture", dlg: "تانفوست: تلك بئر «كل إسوف»… لا يعود منها أحد.", status: kf_done}
+  - {id: S05-03, dur: 6, method: KF2V, loc: CAMP, chars: [ADELASEGH], camera: "medium", action: "Adelasegh ties a goatskin waterbag to his shoulder with a playful shrug", dlg: "أدلاسغ: إذن سأكون أول من يعود.", status: kf_done}
+  - {id: S05-04, dur: 8, method: T2V, loc: JINNWELL, chars: [ADELASEGH], camera: "extreme wide", action: "a blinding white empty plain, shimmering heat haze, a lonely stone-rimmed well and a dead tree, a tiny figure approaching", sfx: "total silence, high whine", status: kf_done}
+  - {id: S05-05, dur: 7, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "medium at the well", action: "Adelasegh lowers a leather bucket into the well on a rope", status: kf_done}
+  - {id: S05-06, dur: 8, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "slow 180° orbit", action: "pale translucent white spirit shapes (Kel Essuf) rise from the mirage and circle him, whispering", dlg: "أرواح (همس): من يشرب من بئرنا… يبقى معنا.", notes: "desaturated palette", status: kf_done}
+  - {id: S05-07, dur: 6, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "insert", action: "his hand pulls a small round polished silver mirror amulet from his bag and raises it", dlg: "أدلاسغ: لكم لغزٌ أولًا: من يقف أمامكم ولا تستطيعون لمسه؟", status: kf_done}
+  - {id: S05-08, dur: 8, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "close on mirror, Adelasegh seen from behind his shoulder (sky-indigo veil)", action: "close-up: a small round polished silver mirror amulet with NO handle, hanging from a leather cord, held up in Adelasegh's hand in the right of frame; three pale translucent white ghost-like spirit shapes made of mist and heat haze, with only hollow glowing eyes, lean toward it and freeze, enchanted by their own reflection; white blinding salt plain behind", status: kf_done}
+  - {id: S05-09, dur: 8, method: KF2V, loc: JINNWELL, chars: [ADELASEGH], camera: "medium wide", action: "Adelasegh quietly fills the waterbag and walks backward away from the frozen spirits, mirror still raised", dlg: "أدلاسغ: الجواب: أنتم.", status: kf_done}
+  - {id: S05-10, dur: 8, method: KF2V, loc: CAMP, tod: sunset, chars: [ADELASEGH], camera: "wide, sunset", action: "back in camp at sunset Adelasegh pours clear water into a bowl, people cheer around him", sfx: "cheers, ululation", status: kf_done}
+  - {id: S05-11, dur: 7, method: KF2V, loc: CAMP, tod: sunset, chars: [AMAMELLEN], camera: "close-up of hand, rack focus to eyes", action: "one single image: close-up of Amamellen's dark hand in a deep indigo sleeve tightening on the leather-wrapped hilt of his takouba sword at his belt, the sunset camp blurred in the background", status: kf_done}
 
 - scene: S06
   title: "الفخ الثاني: القربة المثقوبة"
   tod: night->day
   loc: [CAMP, TANEZROUFT]
   shots:
-  - {id: S06-01, dur: 8, method: KF2V, loc: CAMP, tod: night, chars: [AMAMELLEN], camera: "extreme close-up, oil lamp", action: "a blacksmith's needle pierces a tiny hole in the seam of a leather waterbag", sfx: "leather creak", status: todo}
-  - {id: S06-02, dur: 6, method: KF2V, loc: CAMP, tod: night, chars: [AMAMELLEN], camera: "close-up eyes, lamp-lit", action: "Amamellen's eyes, guilty and stubborn at once", status: todo}
-  - {id: S06-03, dur: 8, method: T2V, loc: TANEZROUFT, tod: day, chars: [ADELASEGH], camera: "extreme wide", action: "the Tanezrouft: endless flat gravel desert, mirages, a tiny caravan of one young man and three camels", vo: "أرسله خاله بقافلة إلى تنزروفت… أرض العطش، بقربة تبكي ماءها قطرةً قطرة.", status: todo}
-  - {id: S06-04, dur: 6, method: KF2V, loc: TANEZROUFT, tod: day, chars: [], camera: "macro", action: "water drops fall from a leather bag onto hot gravel and evaporate instantly", sfx: "drip, sizzle", status: todo}
-  - {id: S06-05, dur: 7, method: KF2V, loc: TANEZROUFT, tod: day, chars: [ADELASEGH], camera: "medium", action: "Adelasegh lifts the empty, flat waterbag, a short desperate laugh", status: todo}
-  - {id: S06-06, dur: 8, method: KF2V, loc: TANEZROUFT, tod: night, chars: [ADELASEGH], camera: "top-down, night", action: "lying on his back on the gravel under a sky of stars, reading constellations", sfx: "night wind, jackal far", status: todo}
-  - {id: S06-07, dur: 7, method: KF2V, loc: TANEZROUFT, tod: night, chars: [], camera: "macro, moonlight", action: "a long column of ants carrying seeds across the gravel", dlg: "أدلاسغ (لنفسه): النمل لا يحمل حبًّا إلى حيث لا ماء.", status: todo}
-  - {id: S06-08, dur: 8, method: KF2V, loc: TANEZROUFT, tod: dawn, chars: [ADELASEGH], camera: "medium wide, dawn", action: "he follows the ants to a small rock pool hidden between two boulders, drinks from his palms, camels drink", sfx: "water splash, camel groan", status: todo}
-  - {id: S06-09, dur: 8, method: KF2V, loc: CAMP, tod: day, chars: [ADELASEGH], camera: "wide", action: "Adelasegh enters camp leading the full caravan, children run to him", sfx: "kids shouting", status: todo}
-  - {id: S06-10, dur: 7, method: KF2V, loc: CAMP, tod: day, chars: [AMAMELLEN, ADELASEGH], camera: "two-shot, uncle left nephew right", action: "Adelasegh gently hands the pierced waterbag to his uncle in front of everyone", dlg: "أدلاسغ: قربتك يا خالي… كانت عطشى أكثر مني.", status: todo}
-  - {id: S06-11, dur: 7, method: KF2V, loc: CAMP, tod: day, chars: [TANFUST, AMAMELLEN], camera: "Tanfust in profile foreground, Amamellen background", action: "Tanfust gives her brother a long knowing look; Amamellen turns and walks away", sfx: "silence", status: todo}
+  - {id: S06-01, dur: 8, method: KF2V, loc: CAMP, tod: night, chars: [AMAMELLEN], camera: "extreme close-up, oil lamp", action: "a blacksmith's needle pierces a tiny hole in the seam of a leather waterbag", sfx: "leather creak", status: kf_done}
+  - {id: S06-02, dur: 6, method: KF2V, loc: CAMP, tod: night, chars: [AMAMELLEN], camera: "close-up eyes, lamp-lit", action: "Amamellen's eyes, guilty and stubborn at once", status: kf_done}
+  - {id: S06-03, dur: 8, method: T2V, loc: TANEZROUFT, tod: day, chars: [ADELASEGH], camera: "extreme wide", action: "the Tanezrouft: endless flat gravel desert, mirages, a tiny caravan of one young man and three camels", vo: "أرسله خاله بقافلة إلى تنزروفت… أرض العطش، بقربة تبكي ماءها قطرةً قطرة.", status: kf_done}
+  - {id: S06-04, dur: 6, method: KF2V, loc: TANEZROUFT, tod: day, chars: [], camera: "macro", action: "water drops fall from a leather bag onto hot gravel and evaporate instantly", sfx: "drip, sizzle", status: kf_done}
+  - {id: S06-05, dur: 7, method: KF2V, loc: TANEZROUFT, tod: day, chars: [ADELASEGH], camera: "medium", action: "Adelasegh lifts the empty, flat waterbag, a short desperate laugh", status: kf_done}
+  - {id: S06-06, dur: 8, method: KF2V, loc: TANEZROUFT, tod: night, chars: [ADELASEGH], camera: "top-down, night", action: "lying on his back on the gravel under a sky of stars, reading constellations", sfx: "night wind, jackal far", status: kf_done}
+  - {id: S06-07, dur: 7, method: KF2V, loc: TANEZROUFT, tod: night, chars: [], camera: "macro, moonlight", action: "a long column of ants carrying seeds across the gravel", dlg: "أدلاسغ (لنفسه): النمل لا يحمل حبًّا إلى حيث لا ماء.", status: kf_done}
+  - {id: S06-08, dur: 8, method: KF2V, loc: TANEZROUFT, tod: dawn, chars: [ADELASEGH], camera: "medium wide, dawn", action: "he follows the ants to a small rock pool hidden between two boulders, drinks from his palms, camels drink", sfx: "water splash, camel groan", status: kf_done}
+  - {id: S06-09, dur: 8, method: KF2V, loc: CAMP, tod: day, chars: [ADELASEGH], camera: "wide", action: "Adelasegh enters camp leading the full caravan, children run to him", sfx: "kids shouting", status: kf_done}
+  - {id: S06-10, dur: 7, method: KF2V, loc: CAMP, tod: day, chars: [AMAMELLEN, ADELASEGH], camera: "two-shot, uncle left nephew right", action: "Adelasegh gently hands the pierced waterbag to his uncle in front of everyone", dlg: "أدلاسغ: قربتك يا خالي… كانت عطشى أكثر مني.", status: kf_done}
+  - {id: S06-11, dur: 7, method: KF2V, loc: CAMP, tod: day, chars: [TANFUST, AMAMELLEN], camera: "Tanfust in profile foreground, Amamellen background", action: "Tanfust gives her brother a long knowing look; Amamellen turns and walks away", sfx: "silence", status: kf_done}
 
 - scene: S07
   title: "الفخ الثالث: صدع الأسكرام"
   tod: sunset->night
   loc: ASSEKREM
   shots:
-  - {id: S07-01, dur: 8, method: T2V, tod: sunset, chars: [AMAMELLEN, ADELASEGH], camera: "aerial wide", action: "sunset over the basalt spires of Assekrem, a sea of jagged peaks turning red, two tiny figures climbing", sfx: "high wind", status: todo}
-  - {id: S07-02, dur: 7, method: KF2V, tod: sunset, chars: [AMAMELLEN, ADELASEGH], camera: "two-shot at a crevice edge", action: "Amamellen points down into a deep dark crevice", dlg: "أمامّلن: في قاع ذلك الصدع نبتة لا تنبت إلا هنا. أمّك مريضة… انزل.", status: todo}
-  - {id: S07-03, dur: 6, method: KF2V, tod: sunset, chars: [ADELASEGH], camera: "high angle", action: "Adelasegh hesitates a beat, then descends into the crevice on a rope", status: todo}
-  - {id: S07-04, dur: 6, method: KF2V, tod: sunset, chars: [AMAMELLEN], camera: "insert", action: "a dagger blade cuts the taut rope at the rim", sfx: "rope snap", status: todo}
-  - {id: S07-05, dur: 6, method: KF2V, tod: sunset, chars: [ADELASEGH], camera: "top shot looking down", action: "a silhouette falls into darkness", sfx: "then silence", status: todo}
-  - {id: S07-06, dur: 7, method: KF2V, tod: sunset, chars: [AMAMELLEN], camera: "medium, backlit", action: "Amamellen stands at the edge trembling, closes his eyes", status: todo}
-  - {id: S07-07, dur: 7, method: KF2V, chars: [ADELASEGH], camera: "low, moonbeam", action: "at the crevice bottom in a moonbeam Adelasegh, wounded, presses his palm on the wall and the stone sinks softly under his fingers", notes: "the reveal: stone is still soft", status: todo}
-  - {id: S07-08, dur: 8, method: KF2V, chars: [ADELASEGH], camera: "vertical tracking up", action: "his fingers dig handholds into the soft rock, one above another, climbing toward the moon", sfx: "effort breaths", status: todo}
-  - {id: S07-09, dur: 8, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "wide, moonlit", action: "Amamellen sits alone at the edge, head in hands; behind him a shadow rises out of the abyss", status: todo}
-  - {id: S07-10, dur: 7, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "low angle on nephew", action: "Amamellen turns slowly; Adelasegh stands above him, Amamellen's back to the abyss; he does not raise his hand", status: todo}
-  - {id: S07-11, dur: 10, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "silhouette two-shot against huge moon, slow push", action: "the nephew calmly speaks, panting", dlg: "أدلاسغ: لغزٌ يا خالي. ما الذي لا يستطيع الأب أن يعطيه… ولا يستطيع الخال أن يأخذه… ويحمله ابن الأخت؟", status: todo}
-  - {id: S07-12, dur: 10, method: KF2V, chars: [AMAMELLEN], camera: "close-up eyes", action: "tears fill Amamellen's amber eyes above the veil", dlg: "أمامّلن: …الدم. دم أمّك. اسمي… من بعدي.", status: todo}
+  - {id: S07-01, dur: 8, method: T2V, tod: sunset, chars: [AMAMELLEN, ADELASEGH], camera: "aerial wide", action: "sunset over the basalt spires of Assekrem, a sea of jagged peaks turning red, two tiny figures climbing", sfx: "high wind", status: kf_done}
+  - {id: S07-02, dur: 7, method: KF2V, tod: sunset, chars: [AMAMELLEN, ADELASEGH], camera: "two-shot at a crevice edge", action: "Amamellen points down into a deep dark crevice", dlg: "أمامّلن: في قاع ذلك الصدع نبتة لا تنبت إلا هنا. أمّك مريضة… انزل.", status: kf_done}
+  - {id: S07-03, dur: 6, method: KF2V, tod: sunset, chars: [ADELASEGH], camera: "high angle", action: "Adelasegh hesitates a beat, then descends into the crevice on a rope", status: kf_done}
+  - {id: S07-04, dur: 6, method: KF2V, tod: sunset, chars: [AMAMELLEN], camera: "insert", action: "a dagger blade cuts the taut rope at the rim", sfx: "rope snap", status: kf_done}
+  - {id: S07-05, dur: 6, method: KF2V, tod: sunset, chars: [ADELASEGH], camera: "top shot looking down", action: "a silhouette falls into darkness", sfx: "then silence", status: kf_done}
+  - {id: S07-06, dur: 7, method: KF2V, tod: sunset, chars: [AMAMELLEN], camera: "medium, backlit", action: "Amamellen stands at the edge trembling, closes his eyes", status: kf_done}
+  - {id: S07-07, dur: 7, method: KF2V, chars: [ADELASEGH], camera: "low, moonbeam", action: "at the crevice bottom in a moonbeam Adelasegh, wounded, presses his palm on the wall and the stone sinks softly under his fingers", notes: "the reveal: stone is still soft", status: kf_done}
+  - {id: S07-08, dur: 8, method: KF2V, chars: [ADELASEGH], camera: "vertical tracking up", action: "his fingers dig handholds into the soft rock, one above another, climbing toward the moon", sfx: "effort breaths", status: kf_done}
+  - {id: S07-09, dur: 8, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "wide, moonlit", action: "Amamellen sits alone at the edge, head in hands; behind him a shadow rises out of the abyss", status: kf_done}
+  - {id: S07-10, dur: 7, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "low angle on nephew", action: "Amamellen turns slowly; Adelasegh stands above him, Amamellen's back to the abyss; he does not raise his hand", status: kf_done}
+  - {id: S07-11, dur: 10, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "silhouette two-shot against huge moon, slow push", action: "the nephew calmly speaks, panting", dlg: "أدلاسغ: لغزٌ يا خالي. ما الذي لا يستطيع الأب أن يعطيه… ولا يستطيع الخال أن يأخذه… ويحمله ابن الأخت؟", status: kf_done}
+  - {id: S07-12, dur: 10, method: KF2V, chars: [AMAMELLEN], camera: "close-up eyes", action: "tears fill Amamellen's amber eyes above the veil", dlg: "أمامّلن: …الدم. دم أمّك. اسمي… من بعدي.", status: kf_done}
 
 - scene: S08
   title: "المصالحة وتصلّب الحجر"
@@ -125,20 +125,20 @@ scenes:
   loc: ASSEKREM
   shots:
   - {id: S08-01, dur: 9, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "from behind, wide", action: "pre-dawn blue; uncle and nephew sit side by side on the summit edge facing east", notes: "FIRST time side-by-side — staging rule", status: clip_done}
-  - {id: S08-02, dur: 9, method: KF2V, chars: [AMAMELLEN], camera: "profile medium close", action: "Amamellen speaks quietly, looking at the horizon", dlg: "أمامّلن: لم أكن أخاف منك. كنت أخاف أن تراني أصغُر… أن يأتي يومٌ لا يذكرني فيه أحد.", status: todo}
-  - {id: S08-03, dur: 7, method: KF2V, chars: [ADELASEGH], camera: "profile medium close", action: "Adelasegh smiles with his eyes", dlg: "أدلاسغ: وكيف يُنسى من حفر كل هذه الألغاز في رؤوسنا؟", status: todo}
-  - {id: S08-04, dur: 9, method: T2V, chars: [], camera: "wide, locked", action: "sunrise sets the basalt spires ablaze gold and pink, sea of clouds below", sfx: "music rises", status: todo}
-  - {id: S08-05, dur: 8, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "close-up on hands", action: "an older and a younger hand press flat on the rock at the same moment; the fingers do NOT sink in", status: todo}
-  - {id: S08-06, dur: 10, method: T2V, chars: [], camera: "wide, slow pull back", action: "a wave of hardening spreads across the whole mountain: soft glowing rock turns hard and dark like cooling glass, fine crackle lines racing outward", vo: "في ذلك الفجر… تصلّبت الحجارة. ولم يعد أحدٌ يترك أثرًا.", sfx: "deep crackle", status: todo}
-  - {id: S08-07, dur: 8, method: KF2V, chars: [AMAMELLEN], camera: "medium", action: "Amamellen lifts his palm: no imprint on the stone; a short strange laugh", status: todo}
-  - {id: S08-08, dur: 10, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "extreme wide summit", action: "two small figures side by side on the summit in the morning light", dlg: "أمامّلن: انتهى زمن الأثر يا ابن أختي.", status: todo}
+  - {id: S08-02, dur: 9, method: KF2V, chars: [AMAMELLEN], camera: "profile medium close", action: "Amamellen speaks quietly, looking at the horizon", dlg: "أمامّلن: لم أكن أخاف منك. كنت أخاف أن تراني أصغُر… أن يأتي يومٌ لا يذكرني فيه أحد.", status: kf_done}
+  - {id: S08-03, dur: 7, method: KF2V, chars: [ADELASEGH], camera: "profile medium close", action: "Adelasegh smiles with his eyes", dlg: "أدلاسغ: وكيف يُنسى من حفر كل هذه الألغاز في رؤوسنا؟", status: kf_done}
+  - {id: S08-04, dur: 9, method: T2V, chars: [], camera: "wide, locked", action: "sunrise sets the basalt spires ablaze gold and pink, sea of clouds below", sfx: "music rises", status: kf_done}
+  - {id: S08-05, dur: 8, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "close-up on hands", action: "an older and a younger hand press flat on the rock at the same moment; the fingers do NOT sink in", status: kf_done}
+  - {id: S08-06, dur: 10, method: T2V, chars: [], camera: "wide, slow pull back", action: "a wave of hardening spreads across the whole mountain: soft glowing rock turns hard and dark like cooling glass, fine crackle lines racing outward", vo: "في ذلك الفجر… تصلّبت الحجارة. ولم يعد أحدٌ يترك أثرًا.", sfx: "deep crackle", status: kf_done}
+  - {id: S08-07, dur: 8, method: KF2V, chars: [AMAMELLEN], camera: "medium", action: "Amamellen lifts his palm: no imprint on the stone; a short strange laugh", status: kf_done}
+  - {id: S08-08, dur: 10, method: KF2V, chars: [AMAMELLEN, ADELASEGH], camera: "extreme wide summit", action: "two small figures side by side on the summit in the morning light", dlg: "أمامّلن: انتهى زمن الأثر يا ابن أختي.", status: kf_done}
 
 - scene: S09
   title: "الغبار في الأفق"
   tod: morning
   loc: ASSEKREM
   shots:
-  - {id: S09-01, dur: 8, method: KF2V, chars: [ADELASEGH, AMAMELLEN], camera: "medium, nephew foreground", action: "Adelasegh stands and points toward the distant plain, alarmed", dlg: "أدلاسغ: خالي… تافوكت في المخيّم.", status: todo}
-  - {id: S09-02, dur: 8, method: T2V, chars: [], camera: "extreme wide, telephoto", action: "dark columns of dust crawl across the far valley toward a tiny camp", sfx: "distant rumble", status: todo}
-  - {id: S09-03, dur: 6, method: KF2V, chars: [AMAMELLEN], camera: "extreme close-up eyes", action: "Amamellen's amber eyes widen", sfx: "sound drops out, single tende drum hit", status: todo}
-  - {id: S09-04, dur: 8, method: HF, chars: [], camera: "n/a", action: "END CARD: «نهاية الجزء الأول — يتبع: الحجر الصلب»", status: todo}
+  - {id: S09-01, dur: 8, method: KF2V, chars: [ADELASEGH, AMAMELLEN], camera: "medium, nephew foreground", action: "Adelasegh stands and points toward the distant plain, alarmed", dlg: "أدلاسغ: خالي… تافوكت في المخيّم.", status: kf_done}
+  - {id: S09-02, dur: 8, method: T2V, chars: [], camera: "extreme wide, telephoto", action: "dark columns of dust crawl across the far valley toward a tiny camp", sfx: "distant rumble", status: kf_done}
+  - {id: S09-03, dur: 6, method: KF2V, chars: [AMAMELLEN], camera: "extreme close-up eyes", action: "Amamellen's amber eyes widen", sfx: "sound drops out, single tende drum hit", status: kf_done}
+  - {id: S09-04, dur: 8, method: HF, chars: [], camera: "n/a", action: "END CARD: «نهاية الجزء الأول — يتبع: الحجر الصلب»", status: clip_done}
