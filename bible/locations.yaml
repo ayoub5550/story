@@ -30,3 +30,6 @@ locations:
   - token: SIGNROCKS
     ar: "صخور العلامات — مفترقات وآبار منقوشة"
     prompt: "smooth dark-patinated rock faces at a desert crossroads and beside a well, freshly carved pale tifinagh signs"
+  - token: HAMADA
+    ar: "الحمادة — هضبة حجرية صلبة في الهقار، لا تحفظ أثر قدم (أضيفت للجزء الثاني)"
+    prompt: "a hard rocky hamada plateau of the Ahaggar, dark wind-polished stones and gravel with no sand to hold a footprint, low basalt hills on the horizon, vast empty sky"

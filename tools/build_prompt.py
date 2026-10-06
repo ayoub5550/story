@@ -5,7 +5,8 @@ from common import ROOT, STYLE_PREFIX, NEGATIVE, characters, locations, parts, i
 
 TOD = {"night": "night, moonlight and firelight, deep indigo shadows", "day": "bright midday desert light",
        "sunset": "warm sunset golden-orange light, long shadows", "dawn": "dawn, cool blue turning to gold",
-       "morning": "clear morning light", "mythic": "dreamlike pastel glowing light"}
+       "morning": "clear morning light", "mythic": "dreamlike pastel glowing light",
+       "golden": "warm golden-hour light, long soft shadows", "rain": "rare desert rain, wet glistening rock, grey sky"}
 
 
 def build(sc, sh):
