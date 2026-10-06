@@ -1,5 +1,5 @@
 """Original synthesized score + ambience/SFX for Part 1 (deterministic, seeded; no external samples, no licensing).
-Usage: uv run --with numpy --with scipy --with soundfile python tools/make_score.py --part 1
+Usage: uv run --with numpy --with scipy --with soundfile python tools/make_score.py --part 1|2   (Part 2 cues: build2())
 Writes renders/audio/part1_music.wav and renders/audio/part1_sfx.wav (48 kHz stereo, not committed: regenerate).
 Palette (bible/style.md): imzad (one-string bowed fiddle) in D Dorian, drone, tende mortar drum, tehardent-like plucks,
 Adelasegh's reed-flute motif, desert wind, fire. The CUES table below is the spotting sheet: edit times there.
@@ -311,15 +311,120 @@ def build(dur=600.0):
     return M, X
 
 
+# ---------------- Part 2 extras ----------------
+def chisel():
+    """Iron chisel on stone: bright click + short metallic ring."""
+    n = int(0.35 * SR); t = np.arange(n) / SR
+    click = hp(rng.standard_normal(n), 2500) * np.exp(-t * 90)
+    ring = sum(np.sin(2 * np.pi * f * t) * np.exp(-t * d) for f, d in ((2950, 18), (4410, 26), (6120, 34))) * 0.25
+    return (click + ring) * 0.8
+
+
+def rain(dur):
+    n = int(dur * SR); x = hp(lpnoise(n, 7000), 900) * 0.5
+    drops = np.zeros(n); k = rng.integers(0, n, int(dur * 40)); drops[k] = rng.uniform(0.3, 1, len(k))
+    drops = signal.lfilter([1], [1, -0.97], drops) * 0.15
+    return (x + drops) * env_adsr(n, 1.5, 1.5)
+
+
+def build2(dur=720.0):
+    """Part 2 spotting sheet. Times are seconds on the Part 2 timeline (0 = 10:00 of the film)."""
+    M, X = Bus(dur), Bus(dur)
+    D2, A2, D3, F3, A3, E4, A4, D5 = 38, 45, 50, 53, 57, 64, 69, 74
+    # S10 raid (0-80): calm night -> war drums -> ashes at dawn
+    X.add(0, wind(12, 0.3), 0.18); M.add(0, pad([D2, A2], 9, 450, 3, 2), 0.12)
+    M.add(7.5, tende_hit(1.3), 0.8); X.add(8, boom(3), 0.3)
+    tende(M, 8, 53, 132, 0.30, claps=False, accel_to=150)
+    M.add(8, pad([D2, 39, A2], 45, 600, 1, 3), 0.16)
+    for t in (12.2, 13.0, 21.3, 37.4, 42.2): X.add(t, boom(1.5), 0.25)
+    for t in (17.2, 26.2, 47): X.add(t, fire(5), 0.4, 0.2)
+    X.add(42.3, snap(), 0.4)
+    X.add(53, fire(13), 0.35); X.add(53, rumble(6), 0.3)
+    M.add(59, pad([D2, 39], 21, 380, 3, 4), 0.14); X.add(59, wind(21, 0.6), 0.22)
+    M.add(66.5, imzad(THEME_A_MIN[:5]), 0.26)
+    # S11 no trace (80-150)
+    X.add(80, wind(23, 0.4, 0.8), 0.2); M.add(80, pad([D2, A2], 22, 420, 3, 3), 0.10); sparse_imzad(M, 82, 100, 0.12, 21)
+    X.add(103, wind(14, 1.6, 1.6), 0.45); X.add(103, rumble(12), 0.25); M.add(103, pad([D2, 39], 14, 350, 2, 3), 0.12)
+    M.add(117.3, imzad(PHRASES[0] + PHRASES[3] + PHRASES[1]), 0.34, -0.1)    # Tanfust's imzad solo
+    M.add(117, pad([D3, A3], 18, 700, 3, 3), 0.08)
+    M.add(135, pad([D2, A2, D3], 15, 600, 2, 3), 0.12); M.add(142.5, imzad(THEME_A[:5]), 0.26)
+    # S12 last giant (150-270)
+    tende(M, 150, 174, 84, 0.16); M.add(150, flute(FLUTE), 0.12, 0.3); M.add(150, pad([D2, A2, D3], 24, 900, 3, 3), 0.10)
+    X.add(150, wind(31, 0.3), 0.12); M.add(174, shimmer([A4, D5], 7), 0.06)
+    M.add(181, pad([26, 33, D2], 65, 300, 5, 4), 0.20)                # cave: sub drone
+    X.add(203, rumble(7), 0.45); X.add(203, crackle(4), 0.2)
+    M.add(210, shimmer([62, 69, 74], 26), 0.05)
+    M.add(246, pad([D3, A3, E4, A4], 24, 1600, 4, 5), 0.16); M.add(246, shimmer([A4, D5, 76, 81], 24), 0.08)
+    X.add(254, crackle(9), 0.35); X.add(254, boom(5), 0.3)
+    M.add(256, imzad(THEME_A), 0.32)
+    # S13 riddle duel & escape (270-360)
+    X.add(270, fire(67), 0.3, 0.2); M.add(270, pad([D2, 39], 29, 400, 3, 2), 0.12)
+    t = 299
+    for m, d in DOTS: M.add(t, pluck(m, 1.4), 0.12); t += d * 1.5        # riddle game: dots motif, playful
+    for t0 in (312.5, 325.5): M.add(t0, tende_hit(0.9), 0.4)
+    M.add(331, pad([D2, A2], 6, 500, 1, 1), 0.12)
+    tende(M, 337, 350, 150, 0.30, accel_to=168); M.add(337, flute(FLUTE), 0.18, 0.3); M.add(343, flute(FLUTE), 0.16, 0.3)
+    X.add(344, wind(6, 1.0, 1.4), 0.2)
+    M.add(350, pad([D2, A2, D3], 10, 500, 2, 3), 0.14); X.add(350, wind(10, 0.3), 0.18)
+    # S14 invention of letters (360-450): full imzad montage
+    for t in np.arange(360.5, 366.5, 0.62): X.add(t, chisel(), 0.45, 0.1)
+    X.add(367.3, lp(rng.standard_normal(int(2.5 * SR)), 3000) * env_adsr(int(2.5 * SR), 0.01, 2.0), 0.25)
+    M.add(373, pad([D2, A2, D3], 15, 700, 3, 2), 0.10)
+    t = 381
+    for m, d in DOTS: M.add(t, pluck(m, 1.4), 0.16); t += d
+    M.add(388, shimmer([A4, D5, 76], 8), 0.08)
+    M.add(396, imzad(THEME_A + [(None, 0.8)] + THEME_A_MIN), 0.34); M.add(396, pad([D2, A2, D3, F3, A3], 41, 1300, 4, 4), 0.16)
+    tende(M, 396, 437, 88, 0.18)
+    for t in list(np.arange(397, 403, 0.8)) + list(np.arange(405, 410, 0.9)) + list(np.arange(412, 417, 1.0)) + list(np.arange(419, 424, 1.1)) + [432.5]:
+        X.add(t, chisel(), 0.32, 0.15)
+    X.add(425, rain(7), 0.35)
+    M.add(437, imzad(THEME_A[6:]), 0.26); M.add(437, pad([D3, A3, E4], 13, 1000, 3, 4), 0.12)
+    # S15 reading the signs (450-540)
+    X.add(450, wind(14, 0.5), 0.2); M.add(450, pad([D2, 39], 14, 380, 3, 2), 0.10)
+    M.add(464, shimmer([A4, D5, 76, 81], 7), 0.10)
+    t = 464.3
+    for m, d in DOTS: M.add(t, pluck(m, 1.4), 0.2); t += d          # DOTS sting on the sign
+    M.add(471, tende_hit(1.0), 0.5); M.add(478, pad([D3, A3, 66], 8, 1400, 1, 3), 0.12)
+    tende(M, 486, 501, 104, 0.18, claps=True); M.add(494, flute(FLUTE), 0.18, 0.3)
+    M.add(501, pad([D2, 39, A2], 8, 450, 1, 2), 0.16)
+    t = 508.5
+    for m, d in DOTS[:4]: M.add(t, pluck(m, 1.2), 0.15); t += d * 1.4
+    tende(M, 516, 523, 120, 0.22); X.add(518, boom(2.5), 0.25)
+    M.add(523, flute(FLUTE), 0.2, 0.3); M.add(531, flute(FLUTE[:4] + [(74, 1.5)]), 0.18, 0.3); M.add(523, pad([D3, A3, E4], 17, 1300, 2, 4), 0.12)
+    # S16 last rock (540-630): gold returns
+    X.add(540, wind(23, 0.3), 0.14); M.add(540, pad([D2, A2], 23, 500, 4, 3), 0.10); sparse_imzad(M, 542, 562, 0.12, 16)
+    M.add(563, pad([D3, F3, A3], 18, 900, 3, 3), 0.12)
+    M.add(589.5, pad([D2, A2, D3, F3, A3], 40, 1500, 4, 6), 0.18)
+    M.add(598, imzad(THEME_A), 0.40); tende(M, 598, 621, 80, 0.15)
+    M.add(613, shimmer([A4, D5, 76], 17), 0.07)
+    M.add(621, imzad(THEME_A[6:]), 0.30)
+    # S17 words remain (630-690)
+    t = 630.5
+    for rep in range(3):
+        for m, d in DOTS: M.add(t, pluck(m, 1.4), 0.12, 0.2); t += d
+        t += 0.5
+    M.add(639, imzad(PHRASES[2] + PHRASES[4]), 0.30); M.add(630, pad([D3, A3, E4], 34, 1300, 3, 4), 0.12)
+    for t in np.arange(647.5, 653, 0.9): X.add(t, chisel(), 0.25)
+    M.add(664, imzad(THEME_A), 0.36); M.add(664, pad([D2, A2, D3, F3, A3], 18, 1600, 3, 5), 0.18); M.add(664, shimmer([A4, D5, 76, 81], 18), 0.08)
+    X.add(672, wind(18, 0.4, 0.8), 0.15); M.add(682, pad([D2, A2], 10, 500, 3, 3), 0.12)
+    # S18 epilogue (690-720)
+    X.add(690, fire(21), 0.35, -0.2); X.add(690, wind(30, 0.3), 0.12)
+    t = 698.6
+    for m, d in DOTS: M.add(t, pluck(m, 1.4), 0.12); t += d * 1.2
+    M.add(705, shimmer([A4, D5, 76, 81], 15), 0.09)
+    M.add(711, tende_hit(1.2), 0.7); M.add(711.3, imzad(THEME_A), 0.38); M.add(711, pad([D2, A2, D3], 9, 900, 1, 4), 0.18)
+    return M, X
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--part", type=int, default=1); a = ap.parse_args()
-    assert a.part == 1, "only Part 1 is spotted so far"
-    M, X = build()
+    length = {1: 600, 2: 720}[a.part]
+    M, X = build() if a.part == 1 else build2()
     out = ROOT / "renders/audio"; out.mkdir(parents=True, exist_ok=True)
     for name, bus, wet in (("music", M, 0.35), ("sfx", X, 0.12)):
         L, R = reverb(bus.L, bus.R, 3.2 if name == "music" else 1.2, wet)
         peak = max(np.max(np.abs(L)), np.max(np.abs(R))) + 1e-9
-        sf.write(out / f"part{a.part}_{name}.wav", np.stack([L, R], 1)[: int(600 * SR)] / peak * 0.89, SR, subtype="PCM_24")
+        sf.write(out / f"part{a.part}_{name}.wav", np.stack([L, R], 1)[: int(length * SR)] / peak * 0.89, SR, subtype="PCM_24")
         print("wrote", name, "peak_raw", round(peak, 2))
 
 

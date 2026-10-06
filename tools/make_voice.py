@@ -28,7 +28,8 @@ SPEAKERS = {
     "زعيم": ("callum", 0.5, 0, ""),
 }
 # Pronunciation overrides: same words as the screenplay, only tashkeel added where TTS misread (verify with speech_to_text)
-SAY = {"S04-06": "الظِّلُّ! يا خالي، الظِّلُّ!"}
+SAY = {"S04-06": "الظِّلُّ! يا خالي، الظِّلُّ!",
+       "S13-03": "ابْنُ أُخْتِ الحَكِيمِ… مُقَيَّدٌ كالماعِز."}   # STT hears «أختي»: identical in connected speech (ukhti l-ḥakīm), accepted
 LEAD = 0.4  # seconds after shot start before a line begins
 LINES = ROOT / "renders/audio/lines"
 

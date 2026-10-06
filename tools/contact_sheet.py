@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 sys.path.insert(0, str(Path(__file__).parent))
-from common import ROOT, parts, iter_shots, tc
+from common import ROOT, parts, iter_shots, tc, clip_frame
 
 FONT = "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Bold.ttf"
 MONO = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"
@@ -25,7 +25,8 @@ def thumb(sid):
         if p.exists():
             im = Image.open(p).convert("RGB"); w, h = im.size; ch = int(w * 9 / 16); top = int((h - ch) * 0.3)
             return im.crop((0, top, w, top + ch)).resize((W, H))   # same 16:9 crop the clip stage uses
-    return None
+    f = clip_frame(sid)                                          # HF shots: a frame of the rendered graphics
+    return f.resize((W, H)) if f else None
 
 
 def sheet(scene, tl):

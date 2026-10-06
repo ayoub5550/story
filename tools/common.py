@@ -35,3 +35,16 @@ def iter_shots(part_doc):
 def tc(seconds):
     m, s = divmod(int(round(seconds)), 60)
     return f"{m:02d}:{s:02d}"
+
+
+def clip_frame(sid, at=0.6):
+    """Middle-ish frame of renders/clips/<sid>.mp4 as a PIL image (used for HF shots that have no keyframe), or None."""
+    import subprocess, tempfile
+    from PIL import Image
+    clip = ROOT / f"renders/clips/{sid}.mp4"
+    if not clip.exists():
+        return None
+    d = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(clip)]))
+    with tempfile.NamedTemporaryFile(suffix=".jpg") as t:
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{d * at:.2f}", "-i", str(clip), "-frames:v", "1", t.name], check=True)
+        return Image.open(t.name).convert("RGB").copy()

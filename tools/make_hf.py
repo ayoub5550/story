@@ -1,5 +1,6 @@
 """Graphics shots (method HF) rendered with Pillow + ffmpeg -> renders/clips/<ID>.mp4 (1920x1080, 24 fps).
-Usage: uv run --with pillow --with numpy python tools/make_hf.py [S01-07 S02-07 S09-04]
+Usage: uv run --with pillow --with numpy python tools/make_hf.py [S01-07 S02-07 S09-04 S14-06 S15-03 S18-04]
+Part 2 HF shots S14-06 / S15-03 composite carved symbols on plates renders/keyframes/<ID>_plate.jpg (generate the plate first).
 Palette: gold #d9a441 on night #1b1f3a (bible/style.md). The dot-game symbols (two dots, circle, line) are drawn by
 `dot_symbols()` — reuse it in S14/S15 so they stay identical (AGENTS.md §5.6).
 Tifinagh of the hero's name uses the Tuareg (Ahaggar) consonantal spelling ⴰⵎⵎⵍⵏ — NEEDS A NATIVE-SPEAKER CHECK.
@@ -117,9 +118,114 @@ def S09_04():
     pr.stdin.close(); pr.wait(); return out
 
 
+# ---------------- Part 2 ----------------
+def symbol_mask(cx, cy, s=1.0, parts=("dots", "circle", "line"), width=12):
+    """Solid mask of the canonical dot-game symbols, same geometry as dot_symbols(): carve-able shapes."""
+    m = Image.new("L", (W, H)); d = ImageDraw.Draw(m); w = int(width * s)
+    if "dots" in parts:
+        for x, y in ((cx - 330 * s, cy - 18 * s), (cx - 270 * s, cy + 18 * s)):
+            r = 17 * s; d.ellipse([x - r, y - r, x + r, y + r], fill=255)
+    if "circle" in parts:
+        r = 60 * s; d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=255, width=w)
+    if "line" in parts:
+        d.line([(cx + 200 * s, cy), (cx + 380 * s, cy)], fill=255, width=w)
+    return m
+
+
+def plate_img(path, dim=1.0):
+    bg = Image.open(path).convert("RGB"); w, h = bg.size; ch = int(w * 9 / 16)
+    bg = bg.crop((0, int((h - ch) * 0.3), w, int((h - ch) * 0.3) + ch)).resize((W, H))
+    return Image.fromarray((np.asarray(bg, float) * dim).astype(np.uint8)) if dim != 1.0 else bg
+
+
+def carve(bg, mask, depth=1.0, glow_amt=0.0):
+    """Composite a pecked/carved groove (shadow up-left, pale floor, light rim down-right) + optional gold glow."""
+    a = np.asarray(bg, float); m = np.asarray(mask, float)[..., None] / 255 * depth
+    sh = np.asarray(mask.transform(mask.size, Image.AFFINE, (1, 0, 3, 0, 1, 3)).filter(ImageFilter.GaussianBlur(2)), float)[..., None] / 255 * depth
+    rim = np.asarray(mask.transform(mask.size, Image.AFFINE, (1, 0, -3, 0, 1, -3)).filter(ImageFilter.GaussianBlur(2)), float)[..., None] / 255 * depth
+    pale = np.array([214, 196, 160]); noise = rng.normal(0, 14, a.shape[:2])[..., None]
+    out = a * (1 - 0.55 * sh) + rim * 30
+    out = out * (1 - m) + (pale + noise) * m * 0.85 + out * m * 0.15
+    if glow_amt > 0:
+        g = np.asarray(mask.filter(ImageFilter.GaussianBlur(14)), float)[..., None] / 255
+        out = out + glow_amt * (np.array(GOLD) * g * 1.4 + np.array(GOLD) * m * 0.9)
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+
+
+def push(img, t, T, amt=0.06):
+    z = 1 + amt * t / T; w, h = int(W * z), int(H * z); x, y = (w - W) // 2, (h - H) // 2
+    return img.resize((w, h)).crop((x, y, x + W, y + H))
+
+
+def S14_06(plate):
+    """Carving montage beat: symbols appear one by one, glow gold, then a short row of tifinagh letters."""
+    out, pr = writer("S14-06"); bg = plate_img(plate, 0.92); T = 8.0
+    cx, cy, s = W / 2, H / 2 - 60, 1.25
+    seq = [("dots",), ("dots", "circle"), ("dots", "circle", "line")]
+    row = Image.new("L", (W, H)); ImageDraw.Draw(row).text((W / 2, H / 2 + 190), "ⵣ ⵎ ⵏ ⵜ ⵍ", font=ImageFont.truetype(TIFI, 120), fill=255, anchor="mm")
+    for i in range(int(T * FPS)):
+        t = i / FPS; k = min(2, int(t / 1.4)); pr_ = ease((t - k * 1.4) / 0.6)
+        prev = symbol_mask(cx, cy, s, seq[k - 1]) if k else Image.new("L", (W, H))
+        cur = symbol_mask(cx, cy, s, seq[k]); m = Image.fromarray(np.maximum(np.asarray(prev), (np.asarray(cur, float) * pr_).astype(np.uint8)))
+        if t > 4.6: m = Image.fromarray(np.maximum(np.asarray(m), (np.asarray(row, float) * ease((t - 4.6) / 1.2)).astype(np.uint8)))
+        g = 0.35 + 0.45 * ease((t - 3.8) / 1.5) * (1 - 0.3 * np.sin(t * 5) ** 2)
+        img = carve(bg, m, 1.0, g)
+        img = Image.fromarray((np.asarray(push(img, t, T), float) * ease(t / 0.5) * (1 - ease((t - 7.4) / 0.6))).astype(np.uint8))
+        pr.stdin.write(img.tobytes())
+    pr.stdin.close(); pr.wait(); return out
+
+
+def S15_03(plate):
+    """The first sign Tafukt finds: same symbols, already carved and weathered; a faint gold glint sweeps across."""
+    out, pr = writer("S15-03"); bg = plate_img(plate, 0.95); T = 7.0
+    m = symbol_mask(W / 2, H / 2 - 20, 1.35); base = carve(bg, m, 0.9, 0.0)
+    gm = np.asarray(m.filter(ImageFilter.GaussianBlur(10)), float) / 255
+    xs = np.arange(W)[None, :]
+    for i in range(int(T * FPS)):
+        t = i / FPS; sweep = np.exp(-((xs - (-300 + (W + 600) * ease((t - 1.5) / 3.5))) / 160.0) ** 2)
+        a = np.asarray(base, float) + (gm * sweep)[..., None] * np.array(GOLD) * 0.9
+        img = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+        img = Image.fromarray((np.asarray(push(img, t, T, 0.08), float) * ease(t / 0.4) * (1 - ease((t - 6.5) / 0.5))).astype(np.uint8))
+        pr.stdin.write(img.tobytes())
+    pr.stdin.close(); pr.wait(); return out
+
+
+def S18_04(plate):
+    """Epilogue: stars -> dot symbols -> tifinagh name, Arabic title, short end credit (mirror of S01-07 + S02-07)."""
+    out, pr = writer("S18-04"); T = 9.0
+    n = 900; start = np.c_[rng.uniform(0, W, n), rng.uniform(0, H * 0.75, n)]
+    sym = dot_symbols(W / 2, H / 2 - 40, 1.4); tif = text_points(NAME_TIFI, TIFI, 260, W / 2, H / 2 - 170, step=10)
+    title = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(title)
+    d.text((W / 2, H / 2 + 110), "أمامّلن", font=ImageFont.truetype(KUFI, 130), fill=GOLD + (255,), anchor="mm", direction="rtl")
+    d.text((W / 2, H / 2 + 250), "حين تصلّبت الحجارة", font=ImageFont.truetype(NASKH, 64), fill=(240, 226, 196, 255), anchor="mm", direction="rtl")
+    cred = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(cred)
+    d.text((W / 2, H - 120), "مستوحى من أسطورة أمامّلن وأدلاسغ، من تراث الطوارق في الهقار وطاسيلي ناجر", font=ImageFont.truetype(NASKH, 38), fill=(220, 205, 175, 255), anchor="mm", direction="rtl")
+    bg = plate_img(plate, 0.35) if plate and Path(plate).exists() else Image.new("RGB", (W, H), NIGHT)
+    for i in range(int(T * FPS)):
+        t = i / FPS
+        if t < 3.0: pos, al = stars_to(sym, n, (t - 0.4) / 2.2, start)
+        else:
+            s0 = np.array(sym + [tuple(start[j]) for j in range(len(sym), n)], float); pos, al = stars_to(tif, n, (t - 3.0) / 1.8, s0)
+            al = np.clip(al, 0, 1); al[len(tif):] = 0
+        frame = glow(draw_points(pos, np.clip(al, 0, 1), 3.0, Image.new("RGB", (W, H))), 9, 1.6)
+        b = np.asarray(bg, float) * ease((t - 4.0) / 1.5)
+        img = Image.fromarray(np.clip(b + np.asarray(frame, float), 0, 255).astype(np.uint8))
+        for layer, t0 in ((title, 4.8), (cred, 6.4)):
+            a = ease((t - t0) / 1.0)
+            if a > 0:
+                tl = layer.copy(); tl.putalpha(Image.fromarray((np.asarray(layer.split()[3], float) * a).astype(np.uint8)))
+                img.paste(glow(tl.convert("RGB"), 6, 0.5) if layer is title else tl.convert("RGB"), (0, 0), tl)
+        img = Image.fromarray((np.asarray(img, float) * (1 - ease((t - 8.2) / 0.8))).astype(np.uint8))
+        pr.stdin.write(img.tobytes())
+    pr.stdin.close(); pr.wait(); return out
+
+
 if __name__ == "__main__":
     ids = sys.argv[1:] or ["S01-07", "S02-07", "S09-04"]
     plate = next((ROOT / f"renders/keyframes/S02-07_plate.{e}" for e in ("jpg", "png") if (ROOT / f"renders/keyframes/S02-07_plate.{e}").exists()),
                  ROOT / "assets/refs/key_art.png")
+    pl = lambda sid: ROOT / f"renders/keyframes/{sid}_plate.jpg"
     for sid in ids:
-        print(sid, {"S01-07": S01_07, "S02-07": lambda: S02_07(plate), "S09-04": S09_04}[sid]())
+        print(sid, {"S01-07": S01_07, "S02-07": lambda: S02_07(plate), "S09-04": S09_04,
+                    "S14-06": lambda: S14_06(pl("S14-06")), "S15-03": lambda: S15_03(pl("S15-03")),
+                    "S18-04": lambda: S18_04(plate)}[sid]())
